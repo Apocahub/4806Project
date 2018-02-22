@@ -3,3 +3,7 @@ jdk:
  - oraclejdk8
 notifications:
   email: false
+deploy:
+ provider: heroku
+ api-key:
+  secure: $HEROKU_API_KEY
