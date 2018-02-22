@@ -2,6 +2,7 @@ package main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.xml.ws.RequestWrapper;
 
@@ -9,7 +10,7 @@ import javax.xml.ws.RequestWrapper;
 public class EmptyRoot {
 
     @RequestMapping("/")
-    public String emptyRoot() {
+    public @ResponseBody String emptyRoot() {
         return "Hello World!";
     }
 
