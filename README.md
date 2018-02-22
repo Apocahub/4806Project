@@ -1,13 +1,20 @@
 # 4806 Project
 
-Undecided project
+Undecided project description
+
+###Project Members
+
+Conlan LaFreniere | 100971291 <br/>
+Andrew Ward | ????????? <br/>
+Samuel Roberts | ????????? <br/>
+Keegan Wills | ?????????
 
 ### Project State
 
-Not applicable
+Not yet applicable
 
 ## Project Backlog
 
 ```
-Example todo object
+Example backlog item
 ```
