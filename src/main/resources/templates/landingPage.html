@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <style>
+        div {
+            max-width: 200px;
+        }
+        input, select{
+            width:100%;
+            box-sizing:border-box;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div>
+        <form action="#" th:action="@{/student}" method="post">
+            <p><input type="submit" value="Student Login" /></p>
+        </form>
+        <form action="#" th:action="@{/prof}" method="post">
+            <p><input type="submit" value="Professor Login" /></p>
+        </form>
+        <form action="#" th:action="@{/admin}" method="post">
+            <p><input type="submit" value="Project Coordinator Login" /></p>
+        </form>
+    </div>
+
+</body>
+</html>
