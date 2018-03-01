@@ -9,14 +9,19 @@ Profs can enter 4th year project topics, delete ones they no longer offer, or ar
 Conlan LaFreniere | 100971291 <br/>
 Andrew Ward | 100898624 <br/>
 Samuel Roberts | ????????? <br/>
-Keegan Wills | ?????????
+Keegan Wills | 100966515
 
 ### Project State
 
-Sprint 1
+Sprint 1 <br/>
+Created the Model <br/>
+Set up with Travis CI <br/>
+Deployed on Heroku <br/>
+
 
 ## Project Backlog
 
-```
-Example backlog item
-```
+Model Repos <br/>
+Controllers <br/>
+Unit Tests <br/>
+Demo <br/>
