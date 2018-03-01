@@ -25,3 +25,4 @@ Model Repos <br/>
 Controllers <br/>
 Unit Tests <br/>
 Demo <br/>
+UML Use case of basic functionality <br/>
