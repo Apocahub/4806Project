@@ -3,9 +3,44 @@
 <head>
     <title>Project Management System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+    <script src="/js/tabController.js" type="text/javascript" />
+    <link href="css/tabFormatting.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-    <div>Nothing here</div>
+    <!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
+    <div class="tab">
+        <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
+        <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
+    </div>
+    <div id="project" class="tabcontent">
+        <table class="wide">
+            <tr><td colspan="2" class="title">Project List</td></tr>
+            <tr>
+                <td>
+                    <!-- Project list -->
+                    <table id="projects">
+                        <tr><td>Placeholder Project Reference</td></tr>
+                        <tr><td>Placeholder Project Reference</td></tr>
+                        <tr><td>Placeholder Project Reference</td></tr>
+                        <tr><td>Placeholder Project Reference</td></tr>
+                        <tr><td>Placeholder Project Reference</td></tr>
+                    </table>
+                    <button type="button" id="addNewProject">Add New Project</button>
+                    <button type="button" id="deleteProject">Delete</button>
+                </td>
+                <td>
+                    <form>
+                        <input type="text" name="studentCount" value="No Student Count"/><br/>
+                        <textarea type="text" name="restrictions" rows="2">No Restrictions</textarea><br/>
+                        <textarea type="text" name="description">No Description</textarea><br/>
+                        <input type="submit" value="Apply Changes"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="avail" class="tabcontent">Nothing here</div>
+
 </body>
 </html>
