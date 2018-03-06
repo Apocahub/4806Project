@@ -1,3 +1,5 @@
 /target
 .idea/
 4806Project.iml
+*.iml
+.idea
