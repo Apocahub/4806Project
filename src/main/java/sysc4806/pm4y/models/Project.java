@@ -4,26 +4,45 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public final class Project {
+public final class Project
+{
+
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String projectName;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Student> students;
 	@OneToMany(cascade = CascadeType.ALL)
     private List<Student> applicants;
-
 	@OneToOne(cascade = CascadeType.ALL)
+    private String projectName;
     private Prof professor;
     private int maxStudents;
+    private String description;
+    private String restrictions;
 
-    private Project() {}
+    public Project() {}
 
     public Project(final String projectName, final Prof professor)
     {
         setProjectName(projectName);
         setProfessor(professor);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getRestrictions() {
+        return restrictions;
+    }
+
+    public void setRestrictions(String restrictions) {
+        this.restrictions = restrictions;
     }
 
     public String getProjectName() {

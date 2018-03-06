@@ -27,7 +27,7 @@ public class CoordinatorController
     }
 
     @RequestMapping(value = "/createCoordinator",method = RequestMethod.GET)
-    public String createStudent(@RequestParam("first") String first,
+    public String createCoordinator(@RequestParam("first") String first,
                                 @RequestParam("last") String last,
                                 @RequestParam("email") String email,
                                 @RequestParam("password") String password)
