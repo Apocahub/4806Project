@@ -1,7 +1,15 @@
 package sysc4806.pm4y.models;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public final class Project
@@ -10,13 +18,13 @@ public final class Project
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Student.class, cascade = CascadeType.ALL)
 	private List<Student> students;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Student.class, cascade = CascadeType.ALL)
     private List<Student> applicants;
-	@OneToOne(cascade = CascadeType.ALL)
-    private String projectName;
-    private Prof professor;
+	@OneToOne(targetEntity = Prof.class,cascade = CascadeType.ALL)
+	private Prof professor;
+	private String projectName;
     private int maxStudents;
     private String description;
     private String restrictions;
