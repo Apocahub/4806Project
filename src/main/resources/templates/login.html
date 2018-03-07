@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project Management System Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="tabFormatting.css"/>
+</head>
+<body>
+    <h1>Welcome to the 4th Year Project Management System</h1>
+    
+    <form action="#" th:action="@{/login}">
+    	<label>Username: </label>
+    	<input type="text" th:name="username"/>
+    	<br/>
+    	<label>Password: </label>
+    	<input type="password" th:name="password"/>
+    	<br/>
+
+	<form action="#" th:action="@{/createProfessors}">
+		<input class="bottom_button" type="submit" value  = "Register as a Professor"/>
+	</form>
+
+	<form action="#" th:action="@{/createStudents}">
+		<input class="bottom_button" type="submit" value  = "Register as a Student"/>
+	</form>
+	<form action="#" th:action="@{/createCoordinators}">
+		<input type="submit" value  = "Register as a Project Coordinator"/>
+
+</body>
+</html>

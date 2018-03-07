@@ -28,14 +28,12 @@ public class CoordinatorController
     }
 
     @RequestMapping(value = "/createCoordinator",method = RequestMethod.GET)
-    public String createCoordinator(@RequestParam("first") String first,
-                                @RequestParam("last") String last,
-                                @RequestParam("email") String email,
+    public String createCoordinator(@RequestParam("email") String email,
                                 @RequestParam("password") String password)
 
 
     {
-        ProjectCoordinator p = new ProjectCoordinator(first,last);
+        ProjectCoordinator p = new ProjectCoordinator(email, password);
         p.setEmail(email);
         p.setPassword(password);
         repo.save(p);

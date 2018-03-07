@@ -35,9 +35,9 @@ public class ProjectController
 
     @RequestMapping(value="/createProject",method=RequestMethod.GET)
     public String createProject(@RequestParam(value="name") String name,
-                                @RequestParam(value="max") int maxStudents,
-                                @RequestParam(value="max") String description,
-                                @RequestParam(value="max") String restrictions,
+                                @RequestParam(value="maxStudents") int maxStudents,
+                                @RequestParam(value="description") String description,
+                                @RequestParam(value="restrictions") String restrictions,
                                 @CookieValue(value="sessionId",defaultValue="") String sessionId,
                                 Model model){
 

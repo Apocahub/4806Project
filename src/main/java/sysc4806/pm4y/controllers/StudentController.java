@@ -20,14 +20,12 @@ public class StudentController
     }
 
     @RequestMapping(value = "/createStudent",method = RequestMethod.GET)
-    public String createStudent(@RequestParam("first") String first,
-                                @RequestParam("last") String last,
-                                @RequestParam("email") String email,
+    public String createStudent(@RequestParam("email") String email,
                                 @RequestParam("password") String password)
 
 
     {
-        Student student = new Student(first,last);
+        Student student = new Student(email, password);
         student.setEmail(email);
         student.setPassword(password);
         repo.save(student);

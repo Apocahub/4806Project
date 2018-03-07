@@ -20,14 +20,12 @@ public class ProfessorController
     }
 
     @RequestMapping(value = "/createProfessor",method = RequestMethod.GET)
-    public String createProfessor(@RequestParam("first") String first,
-                                @RequestParam("last") String last,
-                                @RequestParam("email") String email,
+    public String createProfessor(@RequestParam("email") String email,
                                 @RequestParam("password") String password)
 
 
     {
-        Prof prof = new Prof(first,last);
+        Prof prof = new Prof(email, password);
         prof.setEmail(email);
         prof.setPassword(password);
         repo.save(prof);

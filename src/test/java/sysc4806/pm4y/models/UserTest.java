@@ -2,6 +2,7 @@ package sysc4806.pm4y.models;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 public class UserTest {
 	@Test
 	public void testConstructor() {
@@ -48,6 +49,26 @@ public class UserTest {
 			user.setPassword("");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("Password must contain at least 1 character", e.getMessage());
+		}
+	}
+
+	@Test
+	public void setIDNull() {
+		User user = new User("Test", "Test");
+		try {
+			user.setSessionId(null);
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("sessioniD Cannot be a null value", e.getMessage());
+		}
+	}
+
+	@Test
+	public void setIDEmpty() {
+		User user = new User("Test", "Test");
+		try {
+			user.setSessionId("");
+		} catch (IllegalArgumentException e) {
+			Assert.assertEquals("sessioniD must contain at least 1 character", e.getMessage());
 		}
 	}
 }
