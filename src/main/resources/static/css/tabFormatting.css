@@ -49,3 +49,34 @@
 #projects tr:hover {
     background-color: #B4DEBB;
 }
+
+h1, h2, p, input, label {
+	font-family: Helvetica, sans-serif; 
+    margin-top: 5px;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 200px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+h1, h2{
+	margin-left: 50px;
+}
+
+.home_button{
+    margin-bottom: 10px;
+}
+.hello_button{
+    margin-left: 175px;
+}
+.bottom_button{
+    margin-left: 50px;
+    margin-top: 10px;
+    float:left;
+}
+
