@@ -56,7 +56,7 @@ public class UserTest {
 	public void setIDNull() {
 		User user = new User("Test", "Test");
 		try {
-			user.setSessioniD(null);
+			user.setSessionId(null);
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("sessioniD Cannot be a null value", e.getMessage());
 		}
@@ -66,7 +66,7 @@ public class UserTest {
 	public void setIDEmpty() {
 		User user = new User("Test", "Test");
 		try {
-			user.setSessioniD("");
+			user.setSessionId("");
 		} catch (IllegalArgumentException e) {
 			Assert.assertEquals("sessioniD must contain at least 1 character", e.getMessage());
 		}

@@ -1,4 +1,5 @@
 package sysc4806.pm4y.controllers;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,12 +7,13 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import sysc4806.pm4y.models.*;
+import sysc4806.pm4y.models.Prof;
+import sysc4806.pm4y.models.Project;
+import sysc4806.pm4y.models.User;
+import sysc4806.pm4y.repositories.ProjectRepo;
+import sysc4806.pm4y.repositories.UserRepo;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.io.File;
 
 @Controller
 public class ProjectController
@@ -39,7 +41,7 @@ public class ProjectController
                                 @CookieValue(value="sessionId",defaultValue="") String sessionId,
                                 Model model){
 
-        List<User> profs = repo2.findbysessionId(sessionId);
+        List<User> profs = repo2.findBySessionId(sessionId);
         Prof prof = (Prof) profs.get(0);
         Project p = new Project();
         p.setProjectName(name);
@@ -57,8 +59,8 @@ public class ProjectController
                                 @CookieValue(value="sessionId",defaultValue="") String sessionId,
                                 Model model){
 
-        List<User> profs = repo2.findbysessionId(sessionId);
-        List<Project> projects = repo.findbyId(projectId);
+        List<User> profs = repo2.findBySessionId(sessionId);
+        List<Project> projects = repo.findById(projectId);
         Project p = projects.get(0);
         repo.delete(p);
         model.addAttribute("delete",true);

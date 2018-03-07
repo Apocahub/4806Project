@@ -1,7 +1,8 @@
 package sysc4806.pm4y.models;
-import javax.persistence.*;
-import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -9,7 +10,7 @@ public class User {
     @Id
     private String email;
     private String password;
-    private String sessioniD;
+    private String sessionId;
 
     public User(final String email,final String password)
     {
@@ -45,18 +46,18 @@ public class User {
         this.password = password;
     }
 
-    public String getSessioniD() {
-        return sessioniD;
+    public String getSessionId() {
+        return sessionId;
     }
 
-    public void setSessioniD(final String sessioniD) {
-        if(Objects.isNull(sessioniD)) {
+    public void setSessionId(final String sessionId) {
+        if(Objects.isNull(sessionId)) {
             throw new IllegalArgumentException("sessioniD Cannot be a null value");
         }
-        if(sessioniD.isEmpty()) {
+        if(sessionId.isEmpty()) {
             throw new IllegalArgumentException("sessioniD must contain at least 1 character");
         }
-        this.sessioniD = sessioniD;
+        this.sessionId = sessionId;
     }
 
 
