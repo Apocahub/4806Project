@@ -7,24 +7,22 @@
 </head>
 <body>
     <h1>Welcome to the 4th Year Project Management System</h1>
-    
-    <form action="#" th:action="@{/login}">
-    	<label>Username: </label>
-    	<input type="text" th:name="username"/>
-    	<br/>
-    	<label>Password: </label>
-    	<input type="password" th:name="password"/>
-    	<br/>
-
-	<form action="#" th:action="@{/createProfessors}">
+	<form action="#" th:action="@{/createProfessor}" th:object="${prof}" method="post">
+		<label>Email: <input type="text" th:field="*{email}" /></label>
+		<label>Password: <input type="text" th:field="*{password}" /></label>
 		<input class="bottom_button" type="submit" value  = "Register as a Professor"/>
 	</form>
 
-	<form action="#" th:action="@{/createStudents}">
+	<form action="#" th:action="@{/createStudent}" th:object="${student}" method="post">
+		<label>Email: <input type="text" th:field= "*{email}" /></label>
+		<label>Password: <input type="text" th:field="*{password}" /></label>
 		<input class="bottom_button" type="submit" value  = "Register as a Student"/>
 	</form>
-	<form action="#" th:action="@{/createCoordinators}">
-		<input type="submit" value  = "Register as a Project Coordinator"/>
 
+	<form action="#" th:action="@{/createCoordinator}" th:object="${coordinator}" method="post">
+		<label>Email: <input type="text" th:field="*{email}" /></label>
+		<label>Password: <input type="text" th:field="*{password}" /></label>
+		<input class="bottom_button" type="submit" value  = "Register as a Coordinator"/>
+	</form>
 </body>
 </html>

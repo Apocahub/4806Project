@@ -6,6 +6,8 @@ import java.util.Objects;
 
 @Entity
 public class User {
+    public User() {
+    }
 
     @Id
     private String email;

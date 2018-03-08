@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Project Management System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,6 +12,8 @@
         <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
         <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
     </div>
+    <label>Welcome</label>
+    <label th:text="${prof?.email}"></label>
     <div id="project" class="tabcontent">
         <table class="wide">
             <tr><td colspan="2" class="title">Project List</td></tr>
