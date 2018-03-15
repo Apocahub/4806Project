@@ -32,7 +32,7 @@ public class LoginController {
     public String createProfessor(@ModelAttribute(value = "prof") Prof prof)
     {
         repo.save(prof);
-        return "profLandingPage";
+        return "redirect:/professor";
     }
 
     @RequestMapping(value = "/createStudent",method = RequestMethod.POST)
