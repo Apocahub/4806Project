@@ -62,5 +62,12 @@ public class User {
         this.sessionId = sessionId;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if (((User)o).email == this.email && ((User)o).password == this.password && ((User)o).sessionId == this.sessionId){
+            return true;
+        }
+        return false;
+    }
 
 }
