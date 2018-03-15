@@ -3,26 +3,71 @@
 <head>
     <title>Project Management System Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="css/tabFormatting.css"/>
+	<script src="/js/tabController.js" type="text/javascript" />
+	<link href="css/tabFormatting.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Welcome to the 4th Year Project Management System</h1>
-	<form action="#" th:action="@{/createProfessor}" th:object="${prof}" method="post">
-		<label>Email: <input type="text" th:field="*{email}" /></label>
-		<label>Password: <input type="password" th:field="*{password}" /></label>
-		<input class="bottom_button" type="submit" value  = "Register as a Professor"/>
-	</form>
+	<h1>Welcome to the 4th Year Project Management System</h1>
 
-	<form action="#" th:action="@{/createStudent}" th:object="${student}" method="post">
-		<label>Email: <input type="text" th:field= "*{email}" /></label>
-		<label>Password: <input type="password" th:field="*{password}" /></label>
-		<input class="bottom_button" type="submit" value  = "Register as a Student"/>
-	</form>
+	<!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
+	<div class="tab">
+		<button class="tablinks" id="defaultOpen" onclick="openTab(event, 'prof')">Professors</button>
+		<button class="tablinks" onclick="openTab(event, 'student')">Students</button>
+		<button class="tablinks" onclick="openTab(event, 'admin')">Administrators</button>
+	</div>
 
-	<form action="#" th:action="@{/createCoordinator}" th:object="${coordinator}" method="post">
-		<label>Email: <input type="text" th:field="*{email}" /></label>
-		<label>Password: <input type="password" th:field="*{password}" /></label>
-		<input class="bottom_button" type="submit" value  = "Register as a Coordinator"/>
-	</form>
+	<div id="prof" class="tabcontent">
+		<form action="#" th:action="@{/createProfessor}" th:object="${prof}" method="post">
+            <table>
+                <tr>
+                    <td><label>Email: </label></td>
+                    <td><input type="text" th:field="*{email}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Password: </label></td>
+                    <td><input type="password" th:field="*{password}" /></td>
+                </tr>
+                <tr>
+                    <td><input class="bottom_button" type="submit" value  = "Login"/></td>
+                </tr>
+            </table>
+		</form>
+	</div>
+
+	<div id="student" class="tabcontent">
+		<form action="#" th:action="@{/createStudent}" th:object="${student}" method="post">
+			<table>
+                <tr>
+                    <td><label>Email: </label></td>
+                    <td><input type="text" th:field= "*{email}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Password: </label></td>
+                    <td><input type="password" th:field="*{password}" /></td>
+                </tr>
+                <tr>
+                    <td><input class="bottom_button" type="submit" value  = "Login"/></td>
+                </tr>
+            </table>
+		</form>
+	</div>
+
+	<div id="admin" class="tabcontent">
+		<form action="#" th:action="@{/createCoordinator}" th:object="${coordinator}" method="post">
+            <table>
+                <tr>
+                    <td><label>Email: </label></td>
+                    <td><input type="text" th:field= "*{email}" /></td>
+                </tr>
+                <tr>
+                    <td><label>Password: </label></td>
+                    <td><input type="password" th:field="*{password}" /></td>
+                </tr>
+                <tr>
+                    <td><input class="bottom_button" type="submit" value  = "Login"/></td>
+                </tr>
+            </table>
+		</form>
+	</div>
 </body>
 </html>
