@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="/js/tabController.js" type="text/javascript" />
     <link href="css/tabFormatting.css" type="text/css" rel="stylesheet"/>
+    <link href="css/projectTable.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
     <!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
@@ -12,36 +13,33 @@
         <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
         <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
     </div>
-    <label>Welcome</label>
-    <label th:text="${prof?.email}"></label>
     <div id="project" class="tabcontent">
-        <table class="wide">
-            <tr><td colspan="2" class="title">Project List</td></tr>
+        <table id="projectTable" class="container">
+            <thead>
             <tr>
-                <td>
-                    <!-- Project list -->
-                    <table id="projects">
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                    </table>
-                    <form action="/addProject" method="get">
-                        <button name="Submit" id="addProject" >Add New Project</button>
-                    </form>
-                    <button type="button" id="deleteProject">Delete</button>
-                </td>
-                <td>
-                    <form>
-                        <input type="text" name="studentCount" value="No Student Count"/><br/>
-                        <textarea type="text" name="restrictions" rows="2">No Restrictions</textarea><br/>
-                        <textarea type="text" name="description">No Description</textarea><br/>
-                        <input type="submit" value="Apply Changes"/>
-                    </form>
-                </td>
+                <th><h1>Project Name</h1></th>
+                <th><h1>Project Description</h1></th>
+                <th><h1>Max Number of Student</h1></th>
+                <th><h1>Restrictions</h1></th>
             </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project : ${projects}">
+                <td th:text="${project?.projectName}"></td>
+                <td th:text="${project?.description}"></td>
+                <td th:text="${project?.maxStudents}"></td>
+                <td th:text="${project?.restrictions}"></td>
+            </tr>
+            </tbody>
         </table>
+        <div class="controlButtonContainer">
+            <form action="/addProject" method="get">
+                <button name="Submit" id="addProject" class="projectControlButton" >Add Project</button>
+            </form>
+            <form action="" method="post">
+                <button type="button" id="deleteProject" class="projectControlButton">Delete Project</button>
+            </form>
+        </div>
     </div>
 
     <div id="avail" class="tabcontent">Nothing here</div>
