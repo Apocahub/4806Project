@@ -3,25 +3,25 @@
 <head>
     <title>Project Management System Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="tabFormatting.css"/>
+	<link rel="stylesheet" type="text/css" href="css/tabFormatting.css"/>
 </head>
 <body>
     <h1>Welcome to the 4th Year Project Management System</h1>
 	<form action="#" th:action="@{/createProfessor}" th:object="${prof}" method="post">
 		<label>Email: <input type="text" th:field="*{email}" /></label>
-		<label>Password: <input type="text" th:field="*{password}" /></label>
+		<label>Password: <input type="password" th:field="*{password}" /></label>
 		<input class="bottom_button" type="submit" value  = "Register as a Professor"/>
 	</form>
 
 	<form action="#" th:action="@{/createStudent}" th:object="${student}" method="post">
 		<label>Email: <input type="text" th:field= "*{email}" /></label>
-		<label>Password: <input type="text" th:field="*{password}" /></label>
+		<label>Password: <input type="password" th:field="*{password}" /></label>
 		<input class="bottom_button" type="submit" value  = "Register as a Student"/>
 	</form>
 
 	<form action="#" th:action="@{/createCoordinator}" th:object="${coordinator}" method="post">
 		<label>Email: <input type="text" th:field="*{email}" /></label>
-		<label>Password: <input type="text" th:field="*{password}" /></label>
+		<label>Password: <input type="password" th:field="*{password}" /></label>
 		<input class="bottom_button" type="submit" value  = "Register as a Coordinator"/>
 	</form>
 </body>

@@ -20,7 +20,7 @@ public class LoginController {
         this.repo = repo;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String login(Model model) {
         model.addAttribute("prof", new Prof());
         model.addAttribute("student", new Student());
