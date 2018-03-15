@@ -17,7 +17,7 @@
 	</div>
 
 	<div id="prof" class="tabcontent">
-		<form action="#" th:action="@{/createProfessor}" th:object="${prof}" method="post">
+		<form action="#" th:action="@{/createProfessor}" th:object="${user}" method="post">
             <table>
                 <tr>
                     <td><label>Email: </label></td>
@@ -35,7 +35,7 @@
 	</div>
 
 	<div id="student" class="tabcontent">
-		<form action="#" th:action="@{/createStudent}" th:object="${student}" method="post">
+		<form action="#" th:action="@{/createStudent}" th:object="${user}" method="post">
 			<table>
                 <tr>
                     <td><label>Email: </label></td>
@@ -53,7 +53,7 @@
 	</div>
 
 	<div id="admin" class="tabcontent">
-		<form action="#" th:action="@{/createCoordinator}" th:object="${coordinator}" method="post">
+		<form action="#" th:action="@{/createCoordinator}" th:object="${user}" method="post">
             <table>
                 <tr>
                     <td><label>Email: </label></td>
