@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sysc4806.pm4y.models.Prof;
 import sysc4806.pm4y.models.User;
 import sysc4806.pm4y.repositories.UserRepo;
 
@@ -28,8 +30,8 @@ public class VerificationController {
 
     @RequestMapping(value="/login")
     public String login(@ModelAttribute(value = "user") User user,
-                              @ModelAttribute(value = "type") String type,
-                              HttpServletResponse response) {
+                        @ModelAttribute(value = "type") String type,
+                        HttpServletResponse response) {
 
         //List<User> accounts = repo.findByEmail(user.getEmail());
         //Query repo for account and check if exists
@@ -39,7 +41,7 @@ public class VerificationController {
             //repo.save(user);
             response.addCookie(new Cookie("sessionId", user.getSessionId()));
             if(type.equals("prof")) {
-                return "profLandingPage";
+                return "redirect:/professor";
             } else if (type.equals("stu")) {
                 return "studentLandingPage";
             } else if (type.equals("admin")) {
