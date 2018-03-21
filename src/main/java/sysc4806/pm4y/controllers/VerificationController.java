@@ -40,7 +40,7 @@ public class VerificationController {
         }
         switch (userType) {
             case PROFESSOR:
-                return "profLandingPage";
+                return "redirect:/professor";
             case STUDENT:
                 return "studentLandingPage";
             case COORDINATOR:
@@ -51,7 +51,6 @@ public class VerificationController {
         }
 
     }
-
     @RequestMapping(value="/logout", method= RequestMethod.GET)
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
