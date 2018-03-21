@@ -13,34 +13,29 @@
         <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
     </div>
     <div id="project" class="tabcontent">
-        <table class="wide">
-            <tr><td colspan="2" class="title">Project List</td></tr>
+        <table id="projectTable" class="container">
+            <thead>
             <tr>
-                <td>
-                    <!-- Project list -->
-                    <table id="projects">
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                    </table>
-                    <button type="button" id="joinProject">Join Project</button>
-                </td>
-                <td>
-                    <!-- project description -->
-                    <div id="projectStudentCount">
-                        No student count
-                    </div>
-                    <div id="projectRestrictions">
-                        No restrictions
-                    </div>
-                    <div id="projectDescription">
-                        No description
-                    </div>
-                </td>
+                <th><h1>Project Name</h1></th>
+                <th><h1>Project Description</h1></th>
+                <th><h1>Max Number of Student</h1></th>
+                <th><h1>Restrictions</h1></th>
             </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project : ${projects}">
+                <td th:text="${project?.projectName}"></td>
+                <td th:text="${project?.description}"></td>
+                <td th:text="${project?.maxStudents}"></td>
+                <td th:text="${project?.restrictions}"></td>
+            </tr>
+            </tbody>
         </table>
+        <div class="controlButtonContainer">
+            <form>
+                <button name="Apply" id="applyToProject" class="projectControlButton" >Apply To Project</button>
+            </form>
+        </div>
     </div>
 
     <div id="avail" class="tabcontent">Nothing here</div>
