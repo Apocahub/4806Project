@@ -29,21 +29,21 @@ public class LoginController {
 
     @RequestMapping(value = "/createProfessor",method = RequestMethod.POST)
     public String createProfessor(@ModelAttribute(User.MODEL_NAME) User user, RedirectAttributes ra) {
-        ra.addFlashAttribute("user", user);
+        ra.addFlashAttribute(User.MODEL_NAME, user);
         ra.addFlashAttribute(UserType.MODEL_NAME, UserType.PROFESSOR);
         return "redirect:/login";
     }
 
     @RequestMapping(value = "/createStudent",method = RequestMethod.POST)
     public String createStudent(@ModelAttribute(User.MODEL_NAME) User user, RedirectAttributes ra) {
-        ra.addFlashAttribute("user", user);
+        ra.addFlashAttribute(User.MODEL_NAME, user);
         ra.addFlashAttribute(UserType.MODEL_NAME, UserType.STUDENT);
         return "redirect:/login";
     }
 
     @RequestMapping(value = "/createCoordinator",method = RequestMethod.POST)
     public String createAdmin(@ModelAttribute(User.MODEL_NAME) User user, RedirectAttributes ra) {
-        ra.addFlashAttribute("user", user);
+        ra.addFlashAttribute(User.MODEL_NAME, user);
         ra.addFlashAttribute(UserType.MODEL_NAME, UserType.COORDINATOR);
         return "redirect:/login";
     }
