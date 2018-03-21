@@ -22,9 +22,9 @@ public class PageController {public UserRepo userRepo;
     @RequestMapping(value="/admin")
     public String adminLoggedIn(Model model){
         List<User> returns = userRepo.findAll();
-        List<ProjectCoordinator> toDisplay = new ArrayList<ProjectCoordinator>();
+        List<Student> toDisplay = new ArrayList<Student>();
         for (User user : returns) {
-            if(user instanceof Student) {toDisplay.add((ProjectCoordinator)user);}
+            if(user instanceof Student) {toDisplay.add((Student)user);}
         }
         model.addAttribute("users", toDisplay);
         return "adminLandingPage";
