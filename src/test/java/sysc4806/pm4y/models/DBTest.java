@@ -1,5 +1,6 @@
 package sysc4806.pm4y.models;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,13 +34,13 @@ public class DBTest {
 
     @Test
     public void testCreation() {
-        assertFalse(ur.findByEmail("email").isEmpty());
+        Assert.assertNotNull(ur.findByEmail("email"));
         assertFalse(pr.findByProjectName("name").isEmpty());
     }
 
     @Test
     public void testProf() {
-        assertEquals(prof, ur.findByEmail("email").get(0));
+        assertEquals(prof, ur.findByEmail("email"));
     }
 
     @Test

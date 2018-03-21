@@ -33,6 +33,9 @@
             </table>
 		</form>
 	</div>
+    <div>
+        <label th:text="${error}"></label>
+    </div>
 
 	<div id="student" class="tabcontent">
 		<form action="#" th:action="@{/createStudent}" th:object="${user}" method="post">
