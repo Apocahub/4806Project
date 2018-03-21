@@ -18,11 +18,11 @@ public final class Project
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-	@OneToMany(targetEntity = Student.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Student.class)
 	private List<Student> students;
-	@OneToMany(targetEntity = Student.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Student.class)
     private List<Student> applicants;
-	@OneToOne(targetEntity = Prof.class,cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Prof.class)
 	private Prof professor;
 	private String projectName;
     private int maxStudents;
@@ -86,7 +86,6 @@ public final class Project
         this.professor = professor;
     }
 
-
     public int getMaxStudents() {
         return maxStudents;
     }
@@ -113,7 +112,6 @@ public final class Project
         this.students = students;
     }
 
-
     public List<Student> getApplicants() {
         return new ArrayList<>(applicants);
     }
@@ -128,8 +126,5 @@ public final class Project
 		}
         this.applicants = applicants;
     }
-
-
-
 
 }
