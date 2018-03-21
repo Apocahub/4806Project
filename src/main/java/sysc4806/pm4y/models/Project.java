@@ -9,6 +9,7 @@ import java.util.Objects;
 @Entity
 public final class Project
 {
+    public static final String MODEL_NAME = "project";
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

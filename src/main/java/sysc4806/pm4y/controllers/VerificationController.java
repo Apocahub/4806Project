@@ -50,11 +50,11 @@ public class VerificationController {
         userRepo.save(account);
         switch (userType) {
             case PROFESSOR:
-                return "redirect:/prof/" + user.getId();
+                return "redirect:/prof/" + account.getId();
             case STUDENT:
-                return "redirect:/student";
+                return "redirect:/student/" + account.getId();
             case COORDINATOR:
-                return "redirect:/admin";
+                return "redirect:/admin/" + account.getId();
             default:
                 redirectAttributes.addFlashAttribute("error","Error occurred while attempting to login");
                 return "redirect:/logout";

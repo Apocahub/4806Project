@@ -3,10 +3,10 @@
 <head>
     <title>Project Management System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="css/projectCreation.css"></link>
+    <link href="../../css/projectCreation.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<form  action="#" th:action="@{/newProject}" th:object="${project}" method="post">
+<form th:action="@{/projects/prof/{id}/newProject(id=${id})}" th:object="${project}" method="post">
     <ul class="form-style-1">
         <li><label>Project Name: <span class="required">*</span></label><input type="text" name="nameField" class="field-divided" placeholder="Project Name..." th:field="*{projectName}" />
         </li>
