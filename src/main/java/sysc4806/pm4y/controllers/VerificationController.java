@@ -31,7 +31,7 @@ public class VerificationController {
     @RequestMapping(value="/login")
     public String login(@ModelAttribute(value = "user") User user,
                         @ModelAttribute(value = "type") String type,
-                        HttpServletResponse response, RedirectAttributes redirectAttributes) {
+                        HttpServletResponse response) {
 
         //List<User> accounts = repo.findByEmail(user.getEmail());
         //Query repo for account and check if exists

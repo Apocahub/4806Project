@@ -33,7 +33,6 @@ public class ProjectController
         this.repo2 = repo2;
     }
 
-    @Deprecated
     @RequestMapping(value="/deleteProject",method=RequestMethod.GET)
     public String deleteProject(@RequestParam(value="projectId") int projectId,
                                 @CookieValue(value="sessionId",defaultValue="") String sessionId,
