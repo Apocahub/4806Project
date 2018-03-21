@@ -1,40 +1,25 @@
 package sysc4806.pm4y.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Student extends User
 {
-    @OneToMany(targetEntity = Student.class, cascade = CascadeType.ALL)
-    private List<Student> group = new ArrayList<>();
-    private boolean hasgroup;
+    @ManyToOne(targetEntity = Project.class, cascade = CascadeType.ALL)
+    private Project project;
 
-    public Student() {
-    }
+    public Student() {}
 
     public Student(final String email, final String password) {
         super(email, password);
     }
 
-    public boolean isHasgroup() {
-        return hasgroup;
+    public Project getProject() {
+        return project;
     }
-
-    public void setHasgroup(boolean hasgroup) {
-        this.hasgroup = hasgroup;
+    public void setProject(Project p) {
+        this.project = p;
     }
-
-    public List<Student> getGroup() {
-        return group;
-    }
-
-    public void setGroup(List<Student> group) {
-        this.group = group;
-    }
-
 }

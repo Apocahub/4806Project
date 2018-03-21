@@ -1,13 +1,8 @@
 package sysc4806.pm4y.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,12 +17,14 @@ public final class Project
 	private List<Student> students;
 	@OneToMany(targetEntity = Student.class)
     private List<Student> applicants;
-	@OneToOne(targetEntity = Prof.class)
+
+	@ManyToOne(targetEntity = Prof.class)
 	private Prof professor;
 	private String projectName;
     private int maxStudents;
     private String description;
     private String restrictions;
+    private Date due;
 
     public Project() {}
 
@@ -91,7 +88,7 @@ public final class Project
     }
 
     public void setMaxStudents(final int maxStudents) throws IllegalArgumentException {
-    	if(maxStudents <= 0) {
+    	if(maxStudents < 0) {
     		throw new IllegalArgumentException("The maximum number of students must be a positive value greater than 0");
 		}
         this.maxStudents = maxStudents;
@@ -125,6 +122,10 @@ public final class Project
 			throw new IllegalArgumentException("The list of applicants must contain at least non-null applicant");
 		}
         this.applicants = applicants;
+    }
+
+    public void setDue(Date dueDate) {
+        this.due = dueDate;
     }
 
 }

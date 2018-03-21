@@ -23,26 +23,28 @@ import java.util.UUID;
 public class LoginController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String login(Model model) {
-        model.addAttribute(User.MODEL_NAME, new User());
+        model.addAttribute(Prof.MODEL_NAME, new Prof());
+        model.addAttribute(Student.MODEL_NAME, new Student());
+        model.addAttribute(ProjectCoordinator.MODEL_NAME, new ProjectCoordinator());
         return "login";
     }
 
     @RequestMapping(value = "/createProfessor",method = RequestMethod.POST)
-    public String createProfessor(@ModelAttribute(User.MODEL_NAME) User user, RedirectAttributes ra) {
+    public String createProfessor(@ModelAttribute(Prof.MODEL_NAME) Prof user, RedirectAttributes ra) {
         ra.addFlashAttribute(User.MODEL_NAME, user);
         ra.addFlashAttribute(UserType.MODEL_NAME, UserType.PROFESSOR);
         return "redirect:/login";
     }
 
     @RequestMapping(value = "/createStudent",method = RequestMethod.POST)
-    public String createStudent(@ModelAttribute(User.MODEL_NAME) User user, RedirectAttributes ra) {
+    public String createStudent(@ModelAttribute(Student.MODEL_NAME) Student user, RedirectAttributes ra) {
         ra.addFlashAttribute(User.MODEL_NAME, user);
         ra.addFlashAttribute(UserType.MODEL_NAME, UserType.STUDENT);
         return "redirect:/login";
     }
 
     @RequestMapping(value = "/createCoordinator",method = RequestMethod.POST)
-    public String createAdmin(@ModelAttribute(User.MODEL_NAME) User user, RedirectAttributes ra) {
+    public String createAdmin(@ModelAttribute(ProjectCoordinator.MODEL_NAME) ProjectCoordinator user, RedirectAttributes ra) {
         ra.addFlashAttribute(User.MODEL_NAME, user);
         ra.addFlashAttribute(UserType.MODEL_NAME, UserType.COORDINATOR);
         return "redirect:/login";
