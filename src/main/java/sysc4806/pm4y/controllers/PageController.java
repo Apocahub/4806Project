@@ -3,6 +3,7 @@ package sysc4806.pm4y.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
@@ -31,12 +32,19 @@ public class PageController {public UserRepo userRepo;
     }
 
     @RequestMapping(value="/prof")
-    public String profLoggedIn(Model model){
+    public String profLoggedIn(Model model,
+                               @CookieValue(value="sessionId",defaultValue="") String sessionId) {
         if(!model.containsAttribute("project")) {
             model.addAttribute("project", new Project());
         }
 
-        List<Project> toDisplay = projectRepo.findAll();
+        Prof me = (Prof) userRepo.findBySessionId(sessionId).get(0);
+        List<Project> returns = projectRepo.findAll();
+        List<Project> toDisplay = new ArrayList<Project>();
+
+        for (Project project : returns) {
+            if(project.getProfessor().equals(me)) {toDisplay.add(project);}
+        }
         model.addAttribute("projects", toDisplay);
         //to be implemented
         return "profLandingPage";

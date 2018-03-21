@@ -21,7 +21,7 @@
                     <!-- Stray student list -->
                     <table id="projects">
                         <div th:each="u:${users}">
-                            <tr><td th:text="${u.email}"></td></tr>
+                            <tr><td th:id="${}" th:text="${u.email}"></td></tr>
                         </div>
                     </table>
                     <button type="button" id="notifyStudent">Notify Student</button>
