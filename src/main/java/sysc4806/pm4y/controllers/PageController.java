@@ -29,7 +29,11 @@ public class PageController {
         List<User> returns = userRepo.findAll();
         List<Student> toDisplay = new ArrayList<Student>();
         for (User user : returns) {
-            if(user instanceof Student) {toDisplay.add((Student)user);}
+            if(user instanceof Student) {
+                if (((Student) user).getProject() == null) {
+                    toDisplay.add((Student)user);
+                }
+            }
         }
         model.addAttribute("users", toDisplay);
         return "adminLandingPage";

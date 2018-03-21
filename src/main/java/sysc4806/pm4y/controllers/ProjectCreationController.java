@@ -23,7 +23,7 @@ public class ProjectCreationController {
 
     @RequestMapping(value = "/newProject", method = RequestMethod.POST)
     public String newProject(@ModelAttribute(value = "project") Project project) {
-        //TODO save project
+        projectRepo.save(project);
         return "redirect:/professor";
     }
 

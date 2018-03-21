@@ -38,6 +38,10 @@ public class Application {
     public void populateUser() {
         User p;
         p = new Student("StudentTest", "p1");
+        Project pr = new Project();
+        ((Student) p).setProject(pr);
+        userRepo.save(p);
+        p = new Student("StudentTest2", "p1");
         userRepo.save(p);
         p = new Prof("ProfTest", "p2");
         userRepo.save(p);
