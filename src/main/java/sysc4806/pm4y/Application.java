@@ -18,10 +18,11 @@ import java.util.List;
 @EnableAutoConfiguration
 public class Application {
 
-    public UserRepo userRepo;
-    public ProjectRepo projectRepo;
+    private UserRepo userRepo;
+    private ProjectRepo projectRepo;
+
     @Autowired
-    public void instantiateRepo(UserRepo userRepo, ProjectRepo projectRepo) {
+    public Application(UserRepo userRepo, ProjectRepo projectRepo) {
         this.userRepo = userRepo;
         this.projectRepo = projectRepo;
         populateUser();

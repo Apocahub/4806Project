@@ -13,10 +13,13 @@ import sysc4806.pm4y.repositories.UserRepo;
 import java.util.*;
 
 @Controller
-public class PageController {public UserRepo userRepo;
-    public ProjectRepo projectRepo;
+public class PageController {
+
+    private UserRepo userRepo;
+    private ProjectRepo projectRepo;
+
     @Autowired
-    public void instantiateRepo(UserRepo userRepo, ProjectRepo projectRepo) {
+    public PageController(UserRepo userRepo, ProjectRepo projectRepo) {
         this.userRepo = userRepo;
         this.projectRepo = projectRepo;
     }
@@ -34,8 +37,7 @@ public class PageController {public UserRepo userRepo;
 
     @RequestMapping(value="/prof")
     public String profLoggedIn(Model model,
-                               @ModelAttribute(value = User.MODEL_NAME) User user,
-                               @CookieValue(value="sessionId",defaultValue="") String sessionId) {
+                               @ModelAttribute(value = User.MODEL_NAME) User user) {
         if(!model.containsAttribute("project")) {
             model.addAttribute("project", new Project());
         }

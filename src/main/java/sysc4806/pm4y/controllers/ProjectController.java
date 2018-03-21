@@ -26,7 +26,7 @@ public class ProjectController
     public UserRepo userRepo;
     public ProjectRepo projectRepo;
     @Autowired
-    public void instantiateRepo(UserRepo userRepo, ProjectRepo projectRepo) {
+    public ProjectController(UserRepo userRepo, ProjectRepo projectRepo) {
         this.userRepo = userRepo;
         this.projectRepo = projectRepo;
     }

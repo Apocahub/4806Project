@@ -23,11 +23,11 @@ import java.util.List;
 @Controller
 public class VerificationController {
 
-    public UserRepo userRepo;
-    public ProjectRepo projectRepo;
+    private UserRepo userRepo;
+    private ProjectRepo projectRepo;
   
     @Autowired
-    public void instantiateRepo(UserRepo userRepo, ProjectRepo projectRepo) {
+    public VerificationController(UserRepo userRepo, ProjectRepo projectRepo) {
         this.userRepo = userRepo;
         this.projectRepo = projectRepo;
     }
