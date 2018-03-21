@@ -19,21 +19,19 @@
                 <td>
                     <!-- Project list -->
                     <table id="projects">
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
-                        <tr><td>Placeholder Project Reference</td></tr>
+                        <div th:each="p:${projects}">
+                            <tr><td th:text="${p.projectName}"></td></tr>
+                        </div>
                     </table>
-                    <button type="button" id="addNewProject">Add New Project</button>
                     <button type="button" id="deleteProject">Delete</button>
                 </td>
                 <td>
-                    <form>
-                        <input type="text" name="studentCount" value="No Student Count"/><br/>
-                        <textarea type="text" name="restrictions" rows="2">No Restrictions</textarea><br/>
-                        <textarea type="text" name="description">No Description</textarea><br/>
-                        <input type="submit" value="Apply Changes"/>
+                    <form action="#" th:action="@{/createProj}" th:object="${project}" method="post">
+                        <input type="text" name="projectName" placeholder="Input Project Name" th:field="*{projectName}"/><br/>
+                        <input type="text" name="studentCount" placeholder="Input Max No. Students" th:field="*{maxStudents}"/><br/>
+                        <textarea type="text" name="restrictions" rows="2" placeholder="Input Porject Restrictions" th:field="*{restrictions}"></textarea><br/>
+                        <textarea type="text" name="description" placeholder="Input Project Description" th:field="*{description}"></textarea><br/>
+                        <input type="submit" value="Add Project"/>
                     </form>
                 </td>
             </tr>

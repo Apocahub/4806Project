@@ -52,6 +52,9 @@ public class Application {
         Project p;
         List<User> u = userRepo.findByEmail("ProfTest");
         p = new Project("project1", (Prof) u.get(0));
+        p.setDescription("u smell");
+        p.setRestrictions("no pics no vids");
+        p.setMaxStudents(3);
         projectRepo.save(p);
 
         projectRepo.findByProjectName("project1").forEach(user -> {

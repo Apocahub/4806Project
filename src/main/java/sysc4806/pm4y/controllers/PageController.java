@@ -24,7 +24,7 @@ public class PageController {public UserRepo userRepo;
         List<User> returns = userRepo.findAll();
         List<ProjectCoordinator> toDisplay = new ArrayList<ProjectCoordinator>();
         for (User user : returns) {
-            if(user instanceof ProjectCoordinator) {toDisplay.add((ProjectCoordinator)user);}
+            if(user instanceof Student) {toDisplay.add((ProjectCoordinator)user);}
         }
         model.addAttribute("users", toDisplay);
         return "adminLandingPage";
@@ -32,6 +32,12 @@ public class PageController {public UserRepo userRepo;
 
     @RequestMapping(value="/prof")
     public String profLoggedIn(Model model){
+        if(!model.containsAttribute("project")) {
+            model.addAttribute("project", new Project());
+        }
+
+        List<Project> toDisplay = projectRepo.findAll();
+        model.addAttribute("projects", toDisplay);
         //to be implemented
         return "profLandingPage";
     }

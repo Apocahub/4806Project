@@ -42,9 +42,11 @@ public class VerificationController {
         //Query repo for account and check if exists
 
         if(user.getPassword().equals(accounts.get(0).getPassword())) { // true if account exists
-            user.setSessionId("u" + sessionCount++);
+
+            accounts.get(0).setSessionId("u" + sessionCount++);
+            userRepo.save(accounts.get(0));
             //repo.save(user);
-            response.addCookie(new Cookie("sessionId", user.getSessionId()));
+            response.addCookie(new Cookie("sessionId", accounts.get(0).getSessionId()));
             if(type.equals("prof")) {
                 return "redirect:/prof";
             } else if (type.equals("stu")) {
@@ -55,7 +57,6 @@ public class VerificationController {
         } else {
             //password incorrect
         }
-
 
         response.addCookie(new Cookie("sessionId", null));
         return "redirect:/logout";
@@ -70,7 +71,7 @@ public class VerificationController {
 
     public boolean isAuthenticated(String sessionId) {
         List<User> users = userRepo.findBySessionId(sessionId);
-        return users.isEmpty();
+        return !users.isEmpty();
     }
 
 }

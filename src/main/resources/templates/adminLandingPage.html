@@ -19,15 +19,10 @@
             <tr>
                 <td>
                     <!-- Stray student list -->
-                    <table id="users">
+                    <table id="projects">
                         <div th:each="u:${users}">
                             <tr><td th:text="${u.email}"></td></tr>
                         </div>
-                        <tr><td>Placeholder Student Reference</td></tr>
-                        <tr><td>Placeholder Student Reference</td></tr>
-                        <tr><td>Placeholder Student Reference</td></tr>
-                        <tr><td>Placeholder Student Reference</td></tr>
-                        <tr><td>Placeholder Student Reference</td></tr>
                     </table>
                     <button type="button" id="notifyStudent">Notify Student</button>
                 </td>
