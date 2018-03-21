@@ -13,15 +13,16 @@
         <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
         <button class="tablinks" onclick="openTab(event, 'sched')">Presentation Scheduling Tool</button>
     </div>
-    <label>Welcome</label>
-    <label th:text="${coordinator?.email}"></label>
     <div id="project" class="tabcontent">
         <table class="wide">
             <tr><td colspan="2" class="title">Stray Student List</td></tr>
             <tr>
                 <td>
                     <!-- Stray student list -->
-                    <table id="projects">
+                    <table id="users">
+                        <div th:each="u:${users}">
+                            <tr><td th:text="${u.email}"></td></tr>
+                        </div>
                         <tr><td>Placeholder Student Reference</td></tr>
                         <tr><td>Placeholder Student Reference</td></tr>
                         <tr><td>Placeholder Student Reference</td></tr>

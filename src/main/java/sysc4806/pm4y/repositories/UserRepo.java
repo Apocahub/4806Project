@@ -11,4 +11,5 @@ public interface UserRepo extends CrudRepository<User,String>
 {
     List<User> findByEmail (String email);
     List<User> findBySessionId(String sessionId);
+    List<User> findAll();
 }
