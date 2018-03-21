@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface UserRepo extends CrudRepository<User,String>
 {
+    User findById(String id);
     User findByEmail (String email);
     List<User> findBySessionId(String sessionId);
     List<User> findAll();

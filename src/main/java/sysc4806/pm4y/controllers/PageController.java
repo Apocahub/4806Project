@@ -3,9 +3,8 @@ package sysc4806.pm4y.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
 import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import sysc4806.pm4y.repositories.UserRepo;
@@ -35,13 +34,18 @@ public class PageController {
         return "adminLandingPage";
     }
 
-    @RequestMapping(value="/prof")
-    public String profLoggedIn(Model model,
-                               @ModelAttribute(value = User.MODEL_NAME) User user) {
+    @RequestMapping(value="/prof/{id}")
+    public String profLoggedIn(Model model, @PathVariable(value = "id") String id) {
         if(!model.containsAttribute("project")) {
             model.addAttribute("project", new Project());
         }
-
+        User user = userRepo.findById(id);
+        if(!user.getSessionId().equals(RequestContextHolder.currentRequestAttributes().getSessionId())) {
+            return "redirect:/logout";
+        }
+        if(!(user instanceof Prof)) {
+            return "redirect:/logout";
+        }
         Prof me = (Prof) user;
         List<Project> returns = projectRepo.findAll();
         List<Project> toDisplay = new ArrayList<Project>();
