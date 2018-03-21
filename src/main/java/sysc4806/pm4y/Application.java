@@ -45,21 +45,21 @@ public class Application {
         p = new ProjectCoordinator("AdminTest", "p3");
         userRepo.save(p);
 
-        userRepo.findByEmail("StudentTest").forEach(user -> {
-            log.info(user.getEmail() + ", " + user.getPassword());
-        });
+        User user = userRepo.findByEmail("StudentTest");
+        log.info(user.getEmail() + ", " + user.getPassword());
+
     }
 
     public void populateProject() {
         Project p;
-        List<User> u = userRepo.findByEmail("ProfTest");
-        p = new Project("project1", (Prof) u.get(0));
+        User u = userRepo.findByEmail("ProfTest");
+        p = new Project("project1", (Prof) u);
         p.setDescription("u smell");
         p.setRestrictions("no pics no vids");
         p.setMaxStudents(3);
         projectRepo.save(p);
         u = userRepo.findByEmail("ProfTest1");
-        p = new Project("project2",  (Prof) u.get(0));
+        p = new Project("project2",  (Prof) u);
         p.setDescription("u smell no rly");
         p.setRestrictions("no pics some vids");
         p.setMaxStudents(2);

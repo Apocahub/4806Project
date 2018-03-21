@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
@@ -33,12 +34,13 @@ public class PageController {public UserRepo userRepo;
 
     @RequestMapping(value="/prof")
     public String profLoggedIn(Model model,
+                               @ModelAttribute(value = User.MODEL_NAME) User user,
                                @CookieValue(value="sessionId",defaultValue="") String sessionId) {
         if(!model.containsAttribute("project")) {
             model.addAttribute("project", new Project());
         }
 
-        Prof me = (Prof) userRepo.findBySessionId(sessionId).get(0);
+        Prof me = (Prof) user;
         List<Project> returns = projectRepo.findAll();
         List<Project> toDisplay = new ArrayList<Project>();
 

@@ -65,7 +65,7 @@ public class User {
 
     @Override
     public boolean equals(Object o){
-        if (((User)o).email == this.email && ((User)o).password == this.password && ((User)o).sessionId == this.sessionId){
+        if (((User)o).email.equals(this.email) && ((User)o).password.equals(this.password)){
             return true;
         }
         return false;

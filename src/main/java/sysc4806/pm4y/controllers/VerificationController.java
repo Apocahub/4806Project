@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import sysc4806.pm4y.models.Project;
-import sysc4806.pm4y.models.User;
+import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sysc4806.pm4y.models.User;
-import sysc4806.pm4y.models.UserType;
 import sysc4806.pm4y.repositories.UserRepo;
 
 import javax.servlet.http.Cookie;
@@ -39,15 +37,16 @@ public class VerificationController {
                         @ModelAttribute(value = UserType.MODEL_NAME) UserType userType,
                         RedirectAttributes redirectAttributes) {
 
-        User account = repo.findByEmail(user.getEmail());
+        User account = userRepo.findByEmail(user.getEmail());
         if(account == null) {
-            repo.save(user);
+            userRepo.save(user);
         } else if(!account.getPassword().equals(user.getPassword())) {
             redirectAttributes.addFlashAttribute("error", "Login Failed");
             return "redirect:/";
         }
         switch (userType) {
             case PROFESSOR:
+                redirectAttributes.addFlashAttribute(User.MODEL_NAME, user);
                 return "redirect:/prof";
             case STUDENT:
                 return "redirect:/student";
