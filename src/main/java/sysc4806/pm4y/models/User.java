@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 public class User {
+    public static final String MODEL_NAME = "user";
     public User() {
     }
 

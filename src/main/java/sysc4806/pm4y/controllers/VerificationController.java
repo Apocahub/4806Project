@@ -11,20 +11,23 @@ import org.springframework.web.servlet.ModelAndView;
 import sysc4806.pm4y.models.Project;
 import sysc4806.pm4y.models.User;
 import sysc4806.pm4y.repositories.ProjectRepo;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sysc4806.pm4y.models.User;
+import sysc4806.pm4y.models.UserType;
 import sysc4806.pm4y.repositories.UserRepo;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class VerificationController {
 
-    private int sessionCount = 0;
-
     public UserRepo userRepo;
     public ProjectRepo projectRepo;
+  
     @Autowired
     public void instantiateRepo(UserRepo userRepo, ProjectRepo projectRepo) {
         this.userRepo = userRepo;
@@ -32,40 +35,37 @@ public class VerificationController {
     }
 
     @RequestMapping(value="/login")
-    public String login(@ModelAttribute(value = "user") User user,
-                        @ModelAttribute(value = "type") String type,
-                        HttpServletResponse response,
-                        Model model) {
+    public String login(@ModelAttribute(value = User.MODEL_NAME) User user,
+                        @ModelAttribute(value = UserType.MODEL_NAME) UserType userType,
+                        RedirectAttributes redirectAttributes) {
 
-        List<User> accounts = userRepo.findByEmail(user.getEmail());
-
-        //Query repo for account and check if exists
-
-        if(user.getPassword().equals(accounts.get(0).getPassword())) { // true if account exists
-
-            accounts.get(0).setSessionId("u" + sessionCount++);
-            userRepo.save(accounts.get(0));
-            //repo.save(user);
-            response.addCookie(new Cookie("sessionId", accounts.get(0).getSessionId()));
-            if(type.equals("prof")) {
+        User account = repo.findByEmail(user.getEmail());
+        if(account == null) {
+            repo.save(user);
+        } else if(!account.getPassword().equals(user.getPassword())) {
+            redirectAttributes.addFlashAttribute("error", "Login Failed");
+            return "redirect:/";
+        }
+        switch (userType) {
+            case PROFESSOR:
                 return "redirect:/prof";
-            } else if (type.equals("stu")) {
+            case STUDENT:
                 return "redirect:/student";
-            } else if (type.equals("admin")) {
+            case COORDINATOR:
                 return "redirect:/admin";
-            }
-        } else {
-            //password incorrect
+            default:
+                redirectAttributes.addFlashAttribute("error","Error occurred while attempting to login");
+                return "redirect:/logout";
         }
 
-        response.addCookie(new Cookie("sessionId", null));
-        return "redirect:/logout";
     }
-
     @RequestMapping(value="/logout", method= RequestMethod.GET)
-    public ModelAndView logout(Model model, HttpServletResponse response) {
-        response.addCookie(new Cookie("sessionId", null));
-        return new ModelAndView("redirect:/");
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
+        return "redirect:/";
     }
 
 
