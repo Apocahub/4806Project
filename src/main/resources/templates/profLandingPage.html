@@ -26,11 +26,15 @@
             </thead>
             <tbody>
             <tr th:each="project : ${projects}">
-                <td th:text="${project?.projectName}"></td>
-                <td th:text="${project?.description}"></td>
-                <td th:text="${project?.maxStudents}"></td>
-                <td th:text="${project?.restrictions}"></td>
-                <td class="deleteButtonContainer"><a th:href = "@{/prof/{id}/project/{pid}/delete(id=${user.id},pid=${project.id})}" class="projectControlButton">Delete</a></td>
+                <td class="table-item" th:text="${project?.projectName}"></td>
+                <td class="table-item" th:text="${project?.description}"></td>
+                <td class="table-item" th:text="${project?.maxStudents}"></td>
+                <td class="table-item" th:text="${project?.restrictions}"></td>
+                <td class="deleteButtonContainer">
+                    <form th:action="@{/prof/{id}/project/{pid}/delete(id=__${user.id}__,pid=__${project.id}__)}" method="post">
+                        <button name="submit" id="deleteProject" class="projectControlButton">Delete</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
