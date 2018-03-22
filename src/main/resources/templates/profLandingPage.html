@@ -30,6 +30,7 @@
                 <td th:text="${project?.description}"></td>
                 <td th:text="${project?.maxStudents}"></td>
                 <td th:text="${project?.restrictions}"></td>
+                <td class="deleteButtonContainer"><a th:href = "@{/prof/{id}/project/{pid}/delete(id=${user.id},pid=${project.id})}" class="projectControlButton">Delete</a></td>
             </tr>
             </tbody>
         </table>
@@ -37,9 +38,6 @@
             <a th:href="@{/prof/{id}/project/new(id=${user.id})}">
                 <button name="Submit" id="addProject" class="projectControlButton" >Add Project</button>
             </a>
-            <form action="" method="post">
-                <button type="button" id="deleteProject" class="projectControlButton">Delete Project</button>
-            </form>
         </div>
     </div>
 

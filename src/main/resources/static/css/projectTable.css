@@ -104,12 +104,21 @@ h2 a {
     transition-timing-function: line;
 }
 
+.deleteButtonContainer {
+    font-weight: normal;
+    font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+    -moz-box-shadow: 0 2px 2px -2px #0E1119;
+    box-shadow: 0 2px 2px -2px #0E1119;
+}
+
 .projectControlButton {
     background: #4B99AD;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
     margin: 10px;
+    text-decoration: none;
 }
 
 .projectControlButton:hover {
