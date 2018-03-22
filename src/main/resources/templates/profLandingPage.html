@@ -26,10 +26,15 @@
             </thead>
             <tbody>
             <tr th:each="project : ${projects}">
-                <td th:text="${project?.projectName}"></td>
-                <td th:text="${project?.description}"></td>
-                <td th:text="${project?.maxStudents}"></td>
-                <td th:text="${project?.restrictions}"></td>
+                <td class="table-item" th:text="${project?.projectName}"></td>
+                <td class="table-item" th:text="${project?.description}"></td>
+                <td class="table-item" th:text="${project?.maxStudents}"></td>
+                <td class="table-item" th:text="${project?.restrictions}"></td>
+                <td class="deleteButtonContainer">
+                    <form th:action="@{/prof/{id}/project/{pid}/delete(id=__${user.id}__,pid=__${project.id}__)}" method="post">
+                        <button name="submit" id="deleteProject" class="projectControlButton">Delete</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -37,9 +42,6 @@
             <a th:href="@{/prof/{id}/project/new(id=${user.id})}">
                 <button name="Submit" id="addProject" class="projectControlButton" >Add Project</button>
             </a>
-            <form action="" method="post">
-                <button type="button" id="deleteProject" class="projectControlButton">Delete Project</button>
-            </form>
         </div>
     </div>
 
