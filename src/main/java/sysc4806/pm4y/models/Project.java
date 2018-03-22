@@ -25,7 +25,7 @@ public final class Project
     private int maxStudents;
     private String description;
     private String restrictions;
-    //private Date due;
+    private Date due;
 
     public Project() {}
 
