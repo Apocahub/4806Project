@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="/js/tabController.js" type="text/javascript" />
     <script src="/js/displayProject.js" type="text/javascript" />
-    <link href="css/tabFormatting.css" type="text/css" rel="stylesheet"/>
-    <link href="css/projectTable.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/tabFormatting.css" th:href="@{/css/tabFormatting.css}" type="text/css" rel="stylesheet"/>
+    <link href="../css/projectTable.css" th:href="@{/css/projectTable.css}"  type="text/css" rel="stylesheet"/>
 </head>
 <body>
     <!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
@@ -15,29 +15,6 @@
         <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
     </div>
     <div id="project" class="tabcontent">
-    <!--
-        <table class="wide">
-            <tr><td colspan="2" class="title">Project List PROF LANDING PAGE</td></tr>
-            <tr>
-                <td>
-                    <!- Project list ->
-                    <table id="projects">
-                        <div th:each="p:${projects}">
-                            <tr><td onclick="loadProject(this)" th:text="${p.projectName}"></td></tr>
-                        </div>
-                    </table>
-                    <button type="button" id="deleteProject">Delete</button>
-                </td>
-                <td>
-                    <form action="#" th:action="@{/createProj}" th:object="${project}" method="post">
-                        <input type="text" name="projectName" placeholder="Input Project Name" th:field="*{projectName}"/><br/>
-                        <input type="text" name="studentCount" placeholder="Input Max No. Students" th:field="*{maxStudents}"/><br/>
-                        <textarea type="text" name="restrictions" rows="2" placeholder="Input Porject Restrictions" th:field="*{restrictions}"></textarea><br/>
-                        <textarea type="text" name="description" placeholder="Input Project Description" th:field="*{description}"></textarea><br/>
-                        <input type="submit" value="Add Project"/>
-                    </form>
-                </td> -->
-                
         <table id="projectTable" class="container">
             <thead>
             <tr>
@@ -57,9 +34,9 @@
             </tbody>
         </table>
         <div class="controlButtonContainer">
-            <form action="/addProject" method="get">
+            <a th:href="@{/prof/{id}/project/new(id=${user.id})}">
                 <button name="Submit" id="addProject" class="projectControlButton" >Add Project</button>
-            </form>
+            </a>
             <form action="" method="post">
                 <button type="button" id="deleteProject" class="projectControlButton">Delete Project</button>
             </form>

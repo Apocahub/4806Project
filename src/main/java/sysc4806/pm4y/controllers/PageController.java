@@ -3,9 +3,8 @@ package sysc4806.pm4y.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
 import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import sysc4806.pm4y.repositories.UserRepo;
@@ -24,8 +23,8 @@ public class PageController {
         this.projectRepo = projectRepo;
     }
 
-    @RequestMapping(value="/admin")
-    public String adminLoggedIn(Model model){
+    @RequestMapping(value="/admin/{id}")
+    public String adminLoggedIn(Model model, @PathVariable("id") String id){
         List<User> returns = userRepo.findAll();
         List<Student> toDisplay = new ArrayList<Student>();
         for (User user : returns) {
@@ -39,28 +38,10 @@ public class PageController {
         return "adminLandingPage";
     }
 
-    @RequestMapping(value="/prof")
-    public String profLoggedIn(Model model,
-                               @ModelAttribute(value = User.MODEL_NAME) User user) {
-        if(!model.containsAttribute("project")) {
-            model.addAttribute("project", new Project());
-        }
 
-        Prof me = (Prof) user;
-        List<Project> returns = projectRepo.findAll();
-        List<Project> toDisplay = new ArrayList<Project>();
 
-        for (Project project : returns) {
-            if(project.getProfessor().equals(me)) {toDisplay.add(project);}
-        }
-        model.addAttribute("projects", toDisplay);
-        //to be implemented
-        return "profLandingPage";
-    }
-
-    @RequestMapping(value="/student")
-    public String studentLoggedIn(Model model){
-
+    @RequestMapping(value="/student/{id}")
+    public String studentLoggedIn(Model model, @PathVariable("id") String id){
         List<Project> returns = projectRepo.findAll();
         List<Project> toDisplay = new ArrayList<Project>();
 
@@ -68,7 +49,6 @@ public class PageController {
             if(project.getMaxStudents() > project.getStudents().size()) {toDisplay.add(project);}
         }
         model.addAttribute("projects", toDisplay);
-        //to be implemented
         return "studentLandingPage";
     }
 }

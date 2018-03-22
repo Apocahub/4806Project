@@ -1,6 +1,10 @@
 package sysc4806.pm4y.models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
@@ -11,6 +15,9 @@ public class User {
     }
 
     @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    private String id;
     private String email;
     private String password;
     private String sessionId;
@@ -19,6 +26,14 @@ public class User {
     {
         this.email = email;
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {
@@ -64,11 +79,14 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o){
-        if (((User)o).email.equals(this.email) && ((User)o).password.equals(this.password)){
-            return true;
-        }
-        return false;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        User user = (User) o;
+
+        if (!id.equals(user.id)) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        return password != null ? password.equals(user.password) : user.password == null;
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
@@ -40,18 +41,20 @@ public class VerificationController {
         User account = userRepo.findByEmail(user.getEmail());
         if(account == null) {
             userRepo.save(user);
+            account = user;
         } else if(!account.getPassword().equals(user.getPassword())) {
             redirectAttributes.addFlashAttribute("error", "Login Failed");
             return "redirect:/";
         }
+        account.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+        userRepo.save(account);
         switch (userType) {
             case PROFESSOR:
-                redirectAttributes.addFlashAttribute(User.MODEL_NAME, user);
-                return "redirect:/prof";
+                return "redirect:/prof/" + account.getId();
             case STUDENT:
-                return "redirect:/student";
+                return "redirect:/student/" + account.getId();
             case COORDINATOR:
-                return "redirect:/admin";
+                return "redirect:/admin/" + account.getId();
             default:
                 redirectAttributes.addFlashAttribute("error","Error occurred while attempting to login");
                 return "redirect:/logout";
