@@ -128,4 +128,8 @@ public final class Project
         this.due = dueDate;
     }
 
+    public Date getDue() {
+        return due;
+    }
+
 }

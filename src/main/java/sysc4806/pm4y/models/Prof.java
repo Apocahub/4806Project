@@ -8,7 +8,7 @@ import java.util.List;
 public class Prof extends User
 {
     @OneToMany
-    List<Project> projectList;
+    private List<Project> projectList;
 
     public Prof() {
     }
