@@ -24,11 +24,21 @@ Implemented frontend <br/>
 Added Student/Prof/Admin model <br/>
 Implemented registration through model <br/>
 
-## Project Backlog (Sprint 2)
+Sprint 2 <br/>
+ORM Diagram/UML Diagram. <br/>
+Admin/Student/Prof are able to log in with pre existing accounts. <br/>
+Admin/Student/Prof can create a new account if an account does not exist. <br/>
+Admin is able to view all students with no projects. <br/>
+Student is able to view all projects without maximum number of students. <br/>
+Profs can view all of their own projects and create new projects with required attributes. <br/>
+Added Css for landing pages. <br/>
 
-Increase functionality <br/>
-Model Repos <br/>
-Remap registration from model to repo <br/> 
-Unit Tests <br/>
-Demo <br/>
-UML Use case of basic functionality <br/>
+## Project Backlog (Sprint 3)
+
+Allow admin to notify students without a project. <br/>
+Students will need to be able to apply and join projects. <br/>
+Prof and students will need to add availabilty for oral presentations. <br/>
+Implement Dead line for report and report submission page. <br/>
+Admin will need to allocate rooms for project presentations. <br/>
+**************************INTEGRATION TESTING ******************************** <br/>
+
