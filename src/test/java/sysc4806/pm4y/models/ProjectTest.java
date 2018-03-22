@@ -23,9 +23,9 @@ public class ProjectTest {
 
     @Test
     public void testConstructor() {
-        /*p = new Project(name, prof);
-        Assert.assertEquals(prof, p.getProfessor());
-        Assert.assertEquals(name, p.getProjectName());*/
+        p = new Project(name, prof);
+        Assert.assertSame(prof, p.getProfessor());
+        Assert.assertEquals(name, p.getProjectName());
     }
 
     @Test
