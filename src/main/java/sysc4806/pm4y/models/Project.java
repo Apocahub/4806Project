@@ -25,7 +25,7 @@ public final class Project
     private int maxStudents;
     private String description;
     private String restrictions;
-    private Date due;
+    //private Date due;
 
     public Project() {}
 
@@ -125,8 +125,8 @@ public final class Project
         this.applicants = applicants;
     }
 
-    public void setDue(Date dueDate) {
+    /*public void setDue(Date dueDate) {
         this.due = dueDate;
-    }
+    }*/
 
 }

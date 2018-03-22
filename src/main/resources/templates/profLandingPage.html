@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="/js/tabController.js" type="text/javascript" />
     <script src="/js/displayProject.js" type="text/javascript" />
-    <link href="../css/tabFormatting.css" type="text/css" rel="stylesheet"/>
-    <link href="../css/projectTable.css" type="text/css" rel="stylesheet"/>
+    <link href="../css/tabFormatting.css" th:href="@{/css/tabFormatting.css}" type="text/css" rel="stylesheet"/>
+    <link href="../css/projectTable.css" th:href="@{/css/projectTable.css}"  type="text/css" rel="stylesheet"/>
 </head>
 <body>
     <!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
@@ -34,9 +34,9 @@
             </tbody>
         </table>
         <div class="controlButtonContainer">
-            <form th:action="@{/projects/prof/{id}/createProject(id=${prof.id})}">
+            <a th:href="@{/prof/{id}/project/new(id=${user.id})}">
                 <button name="Submit" id="addProject" class="projectControlButton" >Add Project</button>
-            </form>
+            </a>
             <form action="" method="post">
                 <button type="button" id="deleteProject" class="projectControlButton">Delete Project</button>
             </form>

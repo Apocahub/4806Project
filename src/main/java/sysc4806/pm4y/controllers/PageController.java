@@ -42,7 +42,13 @@ public class PageController {
 
     @RequestMapping(value="/student/{id}")
     public String studentLoggedIn(Model model, @PathVariable("id") String id){
-        //to be implemented
+        List<Project> returns = projectRepo.findAll();
+        List<Project> toDisplay = new ArrayList<Project>();
+
+        for (Project project : returns) {
+            if(project.getMaxStudents() > project.getStudents().size()) {toDisplay.add(project);}
+        }
+        model.addAttribute("projects", toDisplay);
         return "studentLandingPage";
     }
 }
