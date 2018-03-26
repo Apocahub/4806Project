@@ -33,12 +33,15 @@ Student is able to view all projects without maximum number of students. <br/>
 Profs can view all of their own projects and create new projects with required attributes. <br/>
 Added Css for landing pages. <br/>
 
-## Project Backlog (Sprint 3)
+## Project Backlog
 
-Allow admin to notify students without a project. <br/>
+Sprint 3 <br/>
 Students will need to be able to apply and join projects. <br/>
+Students need to be able to submit their project (assuming it's before due date). <br/>
+Profs need to be able to archive projects <br/>
 Prof and students will need to add availabilty for oral presentations. <br/>
-Implement Dead line for report and report submission page. <br/>
-Admin will need to allocate rooms for project presentations. <br/>
-**************************INTEGRATION TESTING ******************************** <br/>
-
+Admin will need to allocate rooms for project presentations based on prof/student availability (automatic OR manual). <br/>
+Allow admin to notify students without a project and set global project deadline. <br/>
+Change program restrictions to be Engineering Programs allowed/disallowed and filter projects accordingly for students. <br/>
+Add unit tests and integration tests <br/>
+Make sure UML and ORM is up to date <br/>
