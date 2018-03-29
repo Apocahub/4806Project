@@ -77,4 +77,11 @@ public class ProfessorController {
         projectRepo.save(project);
         return "redirect:/prof/" + id;
     }
+
+    //Hacky
+    @RequestMapping(value = "/{id}/project/{pid}/delete", method = RequestMethod.POST)
+    private String delete(@PathVariable(value = "id") String id, @PathVariable(value = "pid") Long pid) {
+        projectRepo.deleteById(pid);
+        return "redirect:/prof/" + id;
+    }
 }

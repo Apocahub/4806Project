@@ -4,9 +4,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import sysc4806.pm4y.models.User;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public interface UserRepo extends CrudRepository<User,String>
 {
     User findById(String id);
