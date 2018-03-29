@@ -37,7 +37,14 @@ public class VerificationController {
     @RequestMapping(value="/login")
     public String login(@ModelAttribute(value = User.MODEL_NAME) User user,
                         @ModelAttribute(value = UserType.MODEL_NAME) UserType userType,
-                        RedirectAttributes redirectAttributes) {
+                        RedirectAttributes redirectAttributes,
+                        HttpServletRequest httpServletRequest) {
+
+
+        if(!isAuthenticated(httpServletRequest)) {
+            redirectAttributes.addFlashAttribute("error", "Attempting to access a private page!");
+            return "redirect:/logout";
+        }
 
         User account = userRepo.findByEmail(user.getEmail());
         if(account == null) {
@@ -77,9 +84,9 @@ public class VerificationController {
     }
 
 
-    public boolean isAuthenticated(String sessionId) {
-        List<User> users = userRepo.findBySessionId(sessionId);
-        return !users.isEmpty();
+    public boolean isAuthenticated(HttpServletRequest httpServletRequest) {
+        Cookie[] cookieJar = httpServletRequest.getCookies();
+        return (cookieJar.length > 0);
     }
 
 }
