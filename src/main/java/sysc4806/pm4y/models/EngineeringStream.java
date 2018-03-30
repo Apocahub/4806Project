@@ -1,8 +1,6 @@
 package sysc4806.pm4y.models;
 
-import javax.print.attribute.standard.MediaSize;
-
-public enum Restriction {
+public enum EngineeringStream {
     AEROSPACE,
     ARCHITECTURE,
     BIOMED_ELEC,
@@ -17,8 +15,8 @@ public enum Restriction {
     SOFTWARE,
     SUSTAINABLE_RENEWABLE;
 
-    public String getStreamName(Restriction restriction) {
-        switch (restriction) {
+    public String getStreamName() {
+        switch (this) {
             case AEROSPACE:
                 return "Aerospace Engineering";
             case CIVIL:

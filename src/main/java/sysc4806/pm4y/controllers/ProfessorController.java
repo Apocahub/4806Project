@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sysc4806.pm4y.models.Prof;
-import sysc4806.pm4y.models.Project;
-import sysc4806.pm4y.models.User;
-import sysc4806.pm4y.models.UserType;
+import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import sysc4806.pm4y.repositories.UserRepo;
 
@@ -67,13 +64,13 @@ public class ProfessorController {
                          @RequestParam("projectName") String projectName,
                          @RequestParam("description") String description,
                          @RequestParam("maxStudents") int maxStudents,
-                         @RequestParam("restrictions") String restrictions) {
+                         @RequestParam(required = false, name="engineeringStreams") List<EngineeringStream> engineeringStreams) {
         Project project = new Project();
         project.setProfessor(prof);
         project.setProjectName(projectName);
         project.setDescription(description);
         project.setMaxStudents(maxStudents);
-        project.setRestrictions(restrictions);
+        project.setEngineeringStreams(engineeringStreams!=null ? engineeringStreams : new ArrayList<EngineeringStream>());
         projectRepo.save(project);
         return "redirect:/prof/" + id;
     }

@@ -6,7 +6,7 @@
     <link href="../../../css/projectCreation.css" th:href="@{/css/projectCreation.css}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<form th:action="@{/prof/{id}/project/new(id=${id})}" th:object="${project}" method="post">
+<form action="#" th:action="@{/prof/{id}/project/new(id=${id})}" th:object="${project}" method="post">
     <ul class="form-style-1">
         <li><label>Project Name: <span class="required">*</span></label><input type="text" name="nameField" class="field-divided" placeholder="Project Name..." th:field="*{projectName}" />
         </li>
@@ -19,8 +19,14 @@
         <input type="number" name="maxStudentField" class="field-divided" min="0" placeholder="1" th:field="*{maxStudents}"/>
         </li>
         <li>
-            <label>Restrictions: <span class="required">*</span></label>
-            <textarea name="restrictionsField" id="restrictionsField" class="field-long field-textarea" placeholder="restrictions..." th:field="*{restrictions}"></textarea>
+            <label>Project Restrictions:</label>
+            <select multiple="multiple" th:field="*{engineeringStreams}">
+                <option value="void" hidden="hidden" disabled="disabled"></option>
+                <option th:each="state : ${T(sysc4806.pm4y.models.EngineeringStream).values()}"
+                        th:value="${state}"
+                        th:text="${state}">
+                </option>
+            </select>
         </li>
         <li>
             <input type="submit" value="Submit" />
