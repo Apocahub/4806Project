@@ -23,6 +23,21 @@ public class PageController {
         this.projectRepo = projectRepo;
     }
 
+    @RequestMapping(value="/admin/{id}")
+    public String adminLoggedIn(Model model, @PathVariable("id") String id){
+        List<User> returns = userRepo.findAll();
+        List<Student> toDisplay = new ArrayList<Student>();
+        for (User user : returns) {
+            if(user instanceof Student) {
+                if (((Student) user).getProject() == null) {
+                    toDisplay.add((Student)user);
+                }
+            }
+        }
+        model.addAttribute("users", toDisplay);
+        return "adminLandingPage";
+    }
+
 
 
     @RequestMapping(value="/student/{id}")

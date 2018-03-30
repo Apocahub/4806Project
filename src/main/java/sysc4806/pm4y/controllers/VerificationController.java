@@ -19,7 +19,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -35,8 +34,7 @@ public class VerificationController {
     }
 
     @RequestMapping(value="/login")
-    public String login(Model model,
-                        @ModelAttribute(value = User.MODEL_NAME) User user,
+    public String login(@ModelAttribute(value = User.MODEL_NAME) User user,
                         @ModelAttribute(value = UserType.MODEL_NAME) UserType userType,
                         RedirectAttributes redirectAttributes) {
 
@@ -56,7 +54,6 @@ public class VerificationController {
             case STUDENT:
                 return "redirect:/student/" + account.getId();
             case COORDINATOR:
-                redirectAttributes.addFlashAttribute("dateContainer", new DateContainer());
                 return "redirect:/admin/" + account.getId();
             default:
                 redirectAttributes.addFlashAttribute("error","Error occurred while attempting to login");

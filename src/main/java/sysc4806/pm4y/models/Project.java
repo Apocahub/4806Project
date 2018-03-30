@@ -1,7 +1,6 @@
 package sysc4806.pm4y.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +25,7 @@ public final class Project
     private int maxStudents;
     private String description;
     private String restrictions;
-    private LocalDateTime due;
+    private Date due;
 
     public Project() {}
 
@@ -126,11 +125,11 @@ public final class Project
         this.applicants = applicants;
     }
 
-    public void setDue(LocalDateTime dueDate) {
+    /*public void setDue(Date dueDate) {
         this.due = dueDate;
-    }
+    }*/
 
-    public LocalDateTime getDue() {
+    public Date getDue() {
         return due;
     }
 
