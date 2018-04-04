@@ -38,6 +38,16 @@
                         <button name="submit" id="deleteProject" class="projectControlButton">Delete</button>
                     </form>
                 </td>
+                <td class="deleteButtonContainer">
+                    <form th:action="@{/prof/{id}/project/{pid}/archive(id=__${user.id}__,pid=__${project.id}__)}" method="post">
+                        <div th:if="${project.isArchived} == false">
+                            <button name="submit" id="archiveProject" class="projectControlButton">Archive</button>
+                        </div>
+                        <div th:if="${project.isArchived} == true">
+                            <button name="submit" id="deArchiveProject" class="projectControlButton">De-Archive</button>
+                        </div>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
