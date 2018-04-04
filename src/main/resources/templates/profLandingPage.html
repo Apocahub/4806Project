@@ -15,6 +15,7 @@
         <form action="#" th:action="@{/logout}" method="get">
             <button id="logout" class="tablinks" >Logout</button>
         </form>
+        <button class="tablinks" style="float: right" th:text="${projects[0].getDueDateFancy()}"></button>
     </div>
     <div id="project" class="tabcontent">
         <table id="projectTable" class="container">
