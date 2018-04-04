@@ -47,7 +47,9 @@ public class ProfessorController {
             if(project.getProfessor() == null) continue;
             if(project.getProfessor().equals(prof)) {toDisplay.add(project);}
         }
+
         model.addAttribute("projects", toDisplay);
+        model.addAttribute("dueDateProject", (toDisplay.isEmpty() ? new Project() : toDisplay.get(0)));
         model.addAttribute(Prof.MODEL_NAME, prof);
         return "profLandingPage";
     }

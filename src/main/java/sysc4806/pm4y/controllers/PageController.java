@@ -37,6 +37,7 @@ public class PageController {
             }
         }
         model.addAttribute("projects", toDisplay);
+        model.addAttribute("dueDateProject", (toDisplay.isEmpty() ? new Project() : toDisplay.get(0)));
         return "studentLandingPage";
     }
 }
