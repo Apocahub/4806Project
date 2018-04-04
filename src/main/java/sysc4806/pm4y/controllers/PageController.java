@@ -42,11 +42,16 @@ public class PageController {
 
     @RequestMapping(value="/student/{id}")
     public String studentLoggedIn(Model model, @PathVariable("id") String id){
+        User me = userRepo.findById(id);
         List<Project> returns = projectRepo.findAll();
         List<Project> toDisplay = new ArrayList<Project>();
 
         for (Project project : returns) {
-            if(project.getMaxStudents() > project.getStudents().size()) {toDisplay.add(project);}
+            if(project.getMaxStudents() > project.getStudents().size()) {
+                if(project.getEngineeringStreams().size() == 0 || project.getEngineeringStreams().contains(((Student)me).getEngineeringStream())) {
+                    toDisplay.add(project);
+                }
+            }
         }
         model.addAttribute("projects", toDisplay);
         return "studentLandingPage";

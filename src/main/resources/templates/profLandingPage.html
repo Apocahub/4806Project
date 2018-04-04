@@ -23,7 +23,7 @@
                 <th><h1>Project Name</h1></th>
                 <th><h1>Project Description</h1></th>
                 <th><h1>Max Number of Student</h1></th>
-                <th><h1>Restrictions</h1></th>
+                <th><h1>Permitted Streams</h1></th>
             </tr>
             </thead>
             <tbody>
@@ -31,7 +31,7 @@
                 <td class="table-item" th:text="${project?.projectName}"></td>
                 <td class="table-item" th:text="${project?.description}"></td>
                 <td class="table-item" th:text="${project?.maxStudents}"></td>
-                <td class="table-item" th:text="${project?.restrictions}"></td>
+                <td class="table-item" th:text="${project?.getStreamNames()}"></td>
                 <td class="deleteButtonContainer">
                     <form th:action="@{/prof/{id}/project/{pid}/delete(id=__${user.id}__,pid=__${project.id}__)}" method="post">
                         <button name="submit" id="deleteProject" class="projectControlButton">Delete</button>

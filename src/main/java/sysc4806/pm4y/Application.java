@@ -13,6 +13,7 @@ import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import sysc4806.pm4y.repositories.UserRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -44,6 +45,7 @@ public class Application {
         ((Student) p).setProject(pr);
         userRepo.save(p);
         p = new Student("StudentTest2", "p1");
+        ((Student) p).setEngineeringStream(EngineeringStream.AEROSPACE);
         userRepo.save(p);
         p = new Prof("ProfTest", "p2");
         userRepo.save(p);
@@ -62,18 +64,19 @@ public class Application {
         User u = userRepo.findByEmail("ProfTest");
         p = new Project("project1", (Prof) u);
         p.setDescription("u smell");
-        p.setRestrictions("no pics no vids");
         p.setMaxStudents(3);
+        List la = new ArrayList<EngineeringStream>();
+        la.add(EngineeringStream.AEROSPACE);
+        p.setEngineeringStreams(la);
         projectRepo.save(p);
         u = userRepo.findByEmail("ProfTest1");
         p = new Project("project2",  (Prof) u);
         p.setDescription("u smell no rly");
-        p.setRestrictions("no pics some vids");
         p.setMaxStudents(2);
         projectRepo.save(p);
 
-        projectRepo.findByProjectName("project1").forEach(user -> {
-            log.info(user.getProjectName());
+        projectRepo.findProjectsByEngineeringStreamsContaining(EngineeringStream.AEROSPACE).forEach(user -> {
+            log.info("working");
         });
     }
 

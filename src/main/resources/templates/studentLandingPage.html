@@ -24,7 +24,7 @@
                 <th><h1>Project Name</h1></th>
                 <th><h1>Project Description</h1></th>
                 <th><h1>Max Number of Student</h1></th>
-                <th><h1>Restrictions</h1></th>
+                <th><h1>Permitted Streams</h1></th>
             </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                 <td th:text="${project?.projectName}"></td>
                 <td th:text="${project?.description}"></td>
                 <td th:text="${project?.maxStudents}"></td>
-                <td th:text="${project?.restrictions}"></td>
+                <td th:text="${project?.getStreamNames()}"></td>
             </tr>
             </tbody>
         </table>
