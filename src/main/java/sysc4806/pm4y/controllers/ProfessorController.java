@@ -1,10 +1,12 @@
 package sysc4806.pm4y.controllers;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,9 +14,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sysc4806.pm4y.models.*;
+import sysc4806.pm4y.models.schedule.Schedule;
+import sysc4806.pm4y.models.schedule.TimeSlot;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import sysc4806.pm4y.repositories.UserRepo;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,10 +52,15 @@ public class ProfessorController {
             if(project.getProfessor() == null) continue;
             if(project.getProfessor().equals(prof)) {toDisplay.add(project);}
         }
+        Schedule schedule = prof.getSchedule();
+        if(schedule == null) {
+            schedule = new Schedule();
+        }
 
         model.addAttribute("projects", toDisplay);
         model.addAttribute("dueDateProject", (toDisplay.isEmpty() ? new Project() : toDisplay.get(0)));
         model.addAttribute(Prof.MODEL_NAME, prof);
+        model.addAttribute("schedule", schedule);
         return "profLandingPage";
     }
 
@@ -81,6 +91,11 @@ public class ProfessorController {
     @RequestMapping(value = "/{id}/project/{pid}/delete", method = RequestMethod.POST)
     private String delete(@PathVariable(value = "id") String id, @PathVariable(value = "pid") Long pid) {
         projectRepo.deleteById(pid);
+        return "redirect:/prof/" + id;
+    }
+
+    @RequestMapping(value = "/{id}/avl/process", method = RequestMethod.POST)
+    private String processAvl(@PathVariable(value = "id") String id, @RequestParam(required = false, value = "schedule") Schedule schedule) {
         return "redirect:/prof/" + id;
     }
 }
