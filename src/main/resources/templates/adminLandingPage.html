@@ -30,10 +30,13 @@
                     <button type="button" id="notifyStudent">Notify Student</button>
                 </td>
                 <td>
-                    <form>
-                        Project Due Date: <br/> <input type="date" name="due"/><br/>
-                        <input type="submit" value="Submit"/>
+                    <form action="#" th:action="@{/admin/updateDate/{id}(id=${user.id})}" th:object="${dateContainer}" method="post">
+                        Project Due Date: <br/> <input th:field="*{dateTime}" type="datetime-local"/><br/>
+                        <input type="submit" value="Update Due Date"/>
                     </form>
+                    <div>
+                        <label th:text="${notify}"></label>
+                    </div>
                 </td>
             </tr>
         </table>

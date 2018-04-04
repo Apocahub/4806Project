@@ -1,6 +1,7 @@
 package sysc4806.pm4y.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +31,7 @@ public final class Project
 	private String projectName;
     private int maxStudents;
     private String description;
-    private Date due;
+    private LocalDateTime due;
 
     public Project() {}
 
@@ -122,12 +123,14 @@ public final class Project
         this.applicants = applicants;
     }
 
-    /*public void setDue(Date dueDate) {
+    public void setDue(LocalDateTime dueDate) {
         this.due = dueDate;
-    }*/
+    }
 
-    public Date getDue() {
-        return due;
+    public String getDueDateFancy() {
+        String s = "Project Due: ";
+        s = s + (due != null ? due.toLocalDate() + " @ " + due.toLocalTime() : "Project due date not yet set!");
+        return s;
     }
 
     public List<EngineeringStream> getEngineeringStreams() {

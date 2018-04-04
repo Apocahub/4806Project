@@ -62,6 +62,7 @@ public class VerificationController {
             case STUDENT:
                 return "redirect:/student/" + account.getId();
             case COORDINATOR:
+                redirectAttributes.addFlashAttribute("dateContainer", new DateContainer());
                 return "redirect:/admin/" + account.getId();
             default:
                 redirectAttributes.addFlashAttribute("error","Error occurred while attempting to login");
