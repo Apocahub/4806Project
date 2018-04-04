@@ -13,6 +13,9 @@
     <div class="tab">
         <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
         <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
+        <form action="#" th:action="@{/logout}" method="get">
+            <button id="logout" class="tablinks" >Logout</button>
+        </form>
         <button class="tablinks" style="float: right" th:text="${projects[0].getDueDateFancy()}"></button>
     </div>
     <div id="project" class="tabcontent">
@@ -22,7 +25,7 @@
                 <th><h1>Project Name</h1></th>
                 <th><h1>Project Description</h1></th>
                 <th><h1>Max Number of Student</h1></th>
-                <th><h1>Restrictions</h1></th>
+                <th><h1>Permitted Streams</h1></th>
             </tr>
             </thead>
             <tbody>
@@ -30,7 +33,7 @@
                 <td th:text="${project?.projectName}"></td>
                 <td th:text="${project?.description}"></td>
                 <td th:text="${project?.maxStudents}"></td>
-                <td th:text="${project?.restrictions}"></td>
+                <td th:text="${project?.getStreamNames()}"></td>
             </tr>
             </tbody>
         </table>

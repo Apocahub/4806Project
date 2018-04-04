@@ -12,6 +12,9 @@
     <div class="tab">
         <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
         <button class="tablinks" onclick="openTab(event, 'sched')">Presentation Scheduling Tool</button>
+        <form action="#" th:action="@{/logout}" method="get">
+            <button id="logout" class="tablinks" >Logout</button>
+        </form>
     </div>
     <div id="project" class="tabcontent">
         <table class="wide">

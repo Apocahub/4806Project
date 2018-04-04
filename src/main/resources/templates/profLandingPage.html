@@ -4,7 +4,6 @@
     <title>Project Management System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="/js/tabController.js" type="text/javascript" />
-    <script src="/js/displayProject.js" type="text/javascript" />
     <link href="../css/tabFormatting.css" th:href="@{/css/tabFormatting.css}" type="text/css" rel="stylesheet"/>
     <link href="../css/projectTable.css" th:href="@{/css/projectTable.css}"  type="text/css" rel="stylesheet"/>
 </head>
@@ -13,6 +12,9 @@
     <div class="tab">
         <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
         <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
+        <form action="#" th:action="@{/logout}" method="get">
+            <button id="logout" class="tablinks" >Logout</button>
+        </form>
         <button class="tablinks" style="float: right" th:text="${projects[0].getDueDateFancy()}"></button>
     </div>
     <div id="project" class="tabcontent">
@@ -22,7 +24,7 @@
                 <th><h1>Project Name</h1></th>
                 <th><h1>Project Description</h1></th>
                 <th><h1>Max Number of Student</h1></th>
-                <th><h1>Restrictions</h1></th>
+                <th><h1>Permitted Streams</h1></th>
             </tr>
             </thead>
             <tbody>
@@ -30,7 +32,7 @@
                 <td class="table-item" th:text="${project?.projectName}"></td>
                 <td class="table-item" th:text="${project?.description}"></td>
                 <td class="table-item" th:text="${project?.maxStudents}"></td>
-                <td class="table-item" th:text="${project?.restrictions}"></td>
+                <td class="table-item" th:text="${project?.getStreamNames()}"></td>
                 <td class="deleteButtonContainer">
                     <form th:action="@{/prof/{id}/project/{pid}/delete(id=__${user.id}__,pid=__${project.id}__)}" method="post">
                         <button name="submit" id="deleteProject" class="projectControlButton">Delete</button>

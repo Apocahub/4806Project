@@ -20,12 +20,17 @@ public final class Project
 	@OneToMany(targetEntity = Student.class)
     private List<Student> applicants;
 
+	@ElementCollection(fetch = FetchType.EAGER)
+    @JoinTable(name = "streams", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "stream", nullable = false)
+    @Enumerated(EnumType.STRING)
+	private List<EngineeringStream> engineeringStreams;
+
 	@ManyToOne(targetEntity = Prof.class)
 	private Prof professor;
 	private String projectName;
     private int maxStudents;
     private String description;
-    private String restrictions;
     private LocalDateTime due;
 
     public Project() {}
@@ -42,14 +47,6 @@ public final class Project
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getRestrictions() {
-        return restrictions;
-    }
-
-    public void setRestrictions(String restrictions) {
-        this.restrictions = restrictions;
     }
 
     public String getProjectName() {
@@ -134,6 +131,23 @@ public final class Project
         String s = "Project Due: ";
         s = s + (due != null ? due.toLocalDate() + " @ " + due.toLocalTime() : "Project due date not yet set!");
         return s;
+    }
+
+    public List<EngineeringStream> getEngineeringStreams() {
+        return engineeringStreams;
+    }
+
+    public void setEngineeringStreams(List<EngineeringStream> engineeringStreams) {
+        this.engineeringStreams = engineeringStreams;
+    }
+
+    public String getStreamNames() {
+        String s = "";
+        if(engineeringStreams ==  null || engineeringStreams.isEmpty()) return "Any";
+        for (EngineeringStream stream : engineeringStreams) {
+            s = s + stream.getStreamName() + ", ";
+        }
+        return s.substring(0, s.length() - 2);
     }
 
 }

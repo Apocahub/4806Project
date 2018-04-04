@@ -59,36 +59,6 @@ public class ProjectTest {
     }
 
     @Test
-    public void setRestrictionsNull() {
-        p = new Project(name, prof);
-        try {
-            p.setRestrictions(null);
-        } catch (IllegalArgumentException e) {
-            Assert.assertEquals("Restrictions Cannot be a null value", e.getMessage());
-        }
-    }
-
-    @Test
-    public void setRestrictionsEmpty() {
-        p = new Project(name, prof);
-        try {
-            p.setRestrictions("");
-        } catch (IllegalArgumentException e) {
-            Assert.assertEquals("Restrictions must contain at least 1 character", e.getMessage());
-        }
-    }
-
-    @Test
-    public void setRestrictions() {
-        p = new Project(name, prof);
-        try {
-            p.setRestrictions("restriction");
-        } catch (IllegalArgumentException e) {
-            Assert.assertEquals("restriction", p.getRestrictions());
-        }
-    }
-
-    @Test
     public void setProjectNameNull() {
         p = new Project(name, prof);
         try {

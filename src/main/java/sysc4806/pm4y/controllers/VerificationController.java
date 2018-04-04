@@ -1,6 +1,7 @@
 package sysc4806.pm4y.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.SecurityContextProvider;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -35,10 +35,16 @@ public class VerificationController {
     }
 
     @RequestMapping(value="/login")
-    public String login(Model model,
-                        @ModelAttribute(value = User.MODEL_NAME) User user,
+    public String login(@ModelAttribute(value = User.MODEL_NAME) User user,
                         @ModelAttribute(value = UserType.MODEL_NAME) UserType userType,
-                        RedirectAttributes redirectAttributes) {
+                        RedirectAttributes redirectAttributes,
+                        HttpServletRequest httpServletRequest) {
+
+
+        if(!isAuthenticated(httpServletRequest)) {
+            redirectAttributes.addFlashAttribute("error", "Attempting to access a private page!");
+            return "redirect:/logout";
+        }
 
         User account = userRepo.findByEmail(user.getEmail());
         if(account == null) {
@@ -56,7 +62,6 @@ public class VerificationController {
             case STUDENT:
                 return "redirect:/student/" + account.getId();
             case COORDINATOR:
-                redirectAttributes.addFlashAttribute("dateContainer", new DateContainer());
                 return "redirect:/admin/" + account.getId();
             default:
                 redirectAttributes.addFlashAttribute("error","Error occurred while attempting to login");
@@ -65,18 +70,23 @@ public class VerificationController {
 
     }
     @RequestMapping(value="/logout", method= RequestMethod.GET)
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if(session != null) {
             session.invalidate();
         }
+        Cookie killMe = new Cookie("JSESSIONID", null);
+        killMe.setMaxAge(0);
+        killMe.setPath("/");
+        response.addCookie(killMe);
+
         return "redirect:/";
     }
 
 
-    public boolean isAuthenticated(String sessionId) {
-        List<User> users = userRepo.findBySessionId(sessionId);
-        return !users.isEmpty();
+    public boolean isAuthenticated(HttpServletRequest httpServletRequest) {
+        Cookie[] cookieJar = httpServletRequest.getCookies();
+        return (cookieJar.length > 0);
     }
 
 }

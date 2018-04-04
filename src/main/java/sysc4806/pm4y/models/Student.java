@@ -10,6 +10,8 @@ public class Student extends User
     @ManyToOne(targetEntity = Project.class, cascade = CascadeType.ALL)
     private Project project;
 
+    private EngineeringStream engineeringStream;
+
     public Student() {}
 
     public Student(final String email, final String password) {
@@ -21,5 +23,13 @@ public class Student extends User
     }
     public void setProject(Project p) {
         this.project = p;
+    }
+
+    public EngineeringStream getEngineeringStream() {
+        return engineeringStream;
+    }
+
+    public void setEngineeringStream(EngineeringStream engineeringStream) {
+        this.engineeringStream = engineeringStream;
     }
 }

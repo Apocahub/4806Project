@@ -23,15 +23,35 @@ public class PageController {
         this.projectRepo = projectRepo;
     }
 
+    @RequestMapping(value="/admin/{id}")
+    public String adminLoggedIn(Model model, @PathVariable("id") String id){
+        List<User> returns = userRepo.findAll();
+        List<Student> toDisplay = new ArrayList<Student>();
+        for (User user : returns) {
+            if(user instanceof Student) {
+                if (((Student) user).getProject() == null) {
+                    toDisplay.add((Student)user);
+                }
+            }
+        }
+        model.addAttribute("users", toDisplay);
+        return "adminLandingPage";
+    }
+
 
 
     @RequestMapping(value="/student/{id}")
     public String studentLoggedIn(Model model, @PathVariable("id") String id){
+        User me = userRepo.findById(id);
         List<Project> returns = projectRepo.findAll();
         List<Project> toDisplay = new ArrayList<Project>();
 
         for (Project project : returns) {
-            if(project.getMaxStudents() > project.getStudents().size()) {toDisplay.add(project);}
+            if(project.getMaxStudents() > project.getStudents().size()) {
+                if(project.getEngineeringStreams().size() == 0 || project.getEngineeringStreams().contains(((Student)me).getEngineeringStream())) {
+                    toDisplay.add(project);
+                }
+            }
         }
         model.addAttribute("projects", toDisplay);
         return "studentLandingPage";
