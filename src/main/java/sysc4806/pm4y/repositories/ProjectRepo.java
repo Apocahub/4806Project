@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public interface ProjectRepo extends CrudRepository<Project,String>
 {
-    List<Project> findById(long id);
+    Project findById(long id);
     List<Project> findByProjectName(String projectName);
     List<Project> findAll();
     List<Project> findProjectsByEngineeringStreamsContaining(EngineeringStream engineeringStream);
