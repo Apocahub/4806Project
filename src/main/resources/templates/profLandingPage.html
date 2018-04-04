@@ -4,7 +4,6 @@
     <title>Project Management System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="/js/tabController.js" type="text/javascript" />
-    <script src="/js/displayProject.js" type="text/javascript" />
     <link href="../css/tabFormatting.css" th:href="@{/css/tabFormatting.css}" type="text/css" rel="stylesheet"/>
     <link href="../css/projectTable.css" th:href="@{/css/projectTable.css}"  type="text/css" rel="stylesheet"/>
 </head>
@@ -13,6 +12,9 @@
     <div class="tab">
         <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
         <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
+        <form action="#" th:action="@{/logout}" method="get">
+            <button id="logout" class="tablinks" >Logout</button>
+        </form>
     </div>
     <div id="project" class="tabcontent">
         <table id="projectTable" class="container">
