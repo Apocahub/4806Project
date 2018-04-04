@@ -41,7 +41,9 @@ Students need to be able to submit their project (assuming it's before due date)
 Profs need to be able to archive projects <br/>
 Prof and students will need to add availabilty for oral presentations. <br/>
 Admin will need to allocate rooms for project presentations based on prof/student availability (automatic OR manual). <br/>
-Allow admin to notify students without a project and set global project deadline. <br/>
-Change program restrictions to be Engineering Programs allowed/disallowed and filter projects accordingly for students. <br/>
 Add unit tests and integration tests <br/>
 Make sure UML and ORM is up to date <br/>
+
+Done
+Allow admin to notify students without a project and set global project deadline. <br/>
+Change program restrictions to be Engineering Programs allowed/disallowed and filter projects accordingly for students. <br/>
