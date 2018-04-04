@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Project Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="/js/tabController.js" type="text/javascript" />
+    <link href="../css/tabFormatting.css" th:href="@{/css/tabFormatting.css}" type="text/css" rel="stylesheet"/>
+    <link href="../css/projectTable.css" th:href="@{/css/projectTable.css}"  type="text/css" rel="stylesheet"/>
+
+
+</head>
+<body><!-- https://www.w3schools.com/howto/howto_js_tabs.asp -->
+<div class="tab">
+    <form action="#" th:action="@{/logout}" method="get">
+        <button id="logout" class="tablinks" >Logout</button>
+    </form>
+    <button class="tablinks" style="float: right" th:text="${dueDateProject.getDueDateFancy()}"></button>
+</div>
+<div>The project deadline has passed!</div>
+</body>
+</html>

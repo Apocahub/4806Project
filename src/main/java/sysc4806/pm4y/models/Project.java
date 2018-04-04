@@ -63,6 +63,10 @@ public final class Project
     	this.projectName = projectName;
     }
 
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
     public long getId() {
         return id;
     }
@@ -131,6 +135,10 @@ public final class Project
         String s = "Project Due: ";
         s = s + (due != null ? due.toLocalDate() + " @ " + due.toLocalTime() : "Project due date not yet set!");
         return s;
+    }
+
+    public LocalDateTime getDue() {
+        return due;
     }
 
     public List<EngineeringStream> getEngineeringStreams() {

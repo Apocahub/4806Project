@@ -34,13 +34,16 @@
                 <td th:text="${project?.description}"></td>
                 <td th:text="${project?.maxStudents}"></td>
                 <td th:text="${project?.getStreamNames()}"></td>
+                <td class="deleteButtonContainer">
+                    <form th:action="@{/student/{id}/project/{pid}(id=__${user.id}__,pid=__${project.id}__)}" method="post">
+                        <button name="submit" id="applyToProject" class="projectControlButton">Apply To Project</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
-        <div class="controlButtonContainer">
-            <form>
-                <button name="Apply" id="applyToProject" class="projectControlButton" >Apply To Project</button>
-            </form>
+        <div>
+            <label th:text="${notify}"></label>
         </div>
     </div>
 
