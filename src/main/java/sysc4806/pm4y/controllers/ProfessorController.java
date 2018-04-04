@@ -3,21 +3,17 @@ package sysc4806.pm4y.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sysc4806.pm4y.models.*;
+import sysc4806.pm4y.models.schedule.Days;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import sysc4806.pm4y.repositories.UserRepo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping(value="/prof")
@@ -79,6 +75,23 @@ public class ProfessorController {
     @RequestMapping(value = "/{id}/project/{pid}/delete", method = RequestMethod.POST)
     private String delete(@PathVariable(value = "id") String id, @PathVariable(value = "pid") Long pid) {
         projectRepo.deleteById(pid);
+        return "redirect:/prof/" + id;
+    }
+
+    @RequestMapping(value = "/{id}/availability")
+    public String schedule(@PathVariable(value = "id") String id, Model model) {
+        List<Days> schedule = Arrays.asList(Days.values());
+        model.addAttribute("Schedule", schedule);
+        model.addAttribute("monday", Days.MONDAY);
+        model.addAttribute("tuesday", Days.TUESDAY);
+        model.addAttribute("wednesday", Days.WEDNESDAY);
+        model.addAttribute("thursday", Days.THURSDAY);
+        model.addAttribute("friday", Days.FRIDAY);
+        return "schedulingPage";
+    }
+
+    @RequestMapping(value = "/{id/availability/process", method = RequestMethod.POST)
+    public String processSchedule(@PathVariable(value = "id") String id) {
         return "redirect:/prof/" + id;
     }
 }

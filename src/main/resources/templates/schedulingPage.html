@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Scheduling Tool</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/processForm}" th:object="${foo}" method="post">
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th th:each="weekday : ${Schedule}"><h1 th:text="${weekday.value}"></h1></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="8">
+            <td th:text="${monday.t0.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t0.checked}"/>
+                <input type="checkbox" th:checked="${monday.t0.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t0.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t0.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t0.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t0.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t0.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t0.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t0.checked}"/>
+                <input type="checkbox" th:checked="${friday.t0.checked}" />
+            </td>
+        </tr>
+        <tr id="9">
+            <td th:text="${monday.t1.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t1.checked}"/>
+                <input type="checkbox" th:checked="${monday.t1.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t1.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t1.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t1.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t1.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t1.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t1.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t1.checked}"/>
+                <input type="checkbox" th:checked="${friday.t1.checked}" />
+            </td>
+        </tr>
+        <tr id="10">
+            <td th:text="${monday.t2.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t2.checked}"/>
+                <input type="checkbox" th:checked="${monday.t2.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t2.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t2.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t2.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t2.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t2.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t2.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t2.checked}"/>
+                <input type="checkbox" th:checked="${friday.t2.checked}" />
+            </td>
+        </tr>
+        <tr id="11">
+            <td th:text="${monday.t3.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t3.checked}"/>
+                <input type="checkbox" th:checked="${monday.t3.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t3.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t3.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t3.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t3.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t3.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t3.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t3.checked}"/>
+                <input type="checkbox" th:checked="${friday.t3.checked}" />
+            </td>
+        </tr>
+        <tr id="12">
+            <td th:text="${monday.t4.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t4.checked}"/>
+                <input type="checkbox" th:checked="${monday.t4.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t4.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t4.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t4.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t4.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t4.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t4.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t4.checked}"/>
+                <input type="checkbox" th:checked="${friday.t4.checked}" />
+            </td>
+        </tr>
+        <tr id="13">
+            <td th:text="${monday.t5.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t5.checked}"/>
+                <input type="checkbox" th:checked="${monday.t5.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t5.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t5.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t5.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t5.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t5.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t5.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t5.checked}"/>
+                <input type="checkbox" th:checked="${friday.t5.checked}" />
+            </td>
+        </tr>
+        <tr id="14">
+            <td th:text="${monday.t6.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t6.checked}"/>
+                <input type="checkbox" th:checked="${monday.t6.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t6.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t6.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t6.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t6.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t6.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t6.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t6.checked}"/>
+                <input type="checkbox" th:checked="${friday.t6.checked}" />
+            </td>
+        </tr>
+        <tr id="15">
+            <td th:text="${monday.t7.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t7.checked}"/>
+                <input type="checkbox" th:checked="${monday.t7.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t7.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t7.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t7.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t7.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t7.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t7.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t7.checked}"/>
+                <input type="checkbox" th:checked="${friday.t7.checked}" />
+            </td>
+        </tr>
+        <tr id="16">
+            <td th:text="${monday.t8.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t8.checked}"/>
+                <input type="checkbox" th:checked="${monday.t8.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t8.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t8.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t8.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t8.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t8.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t8.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t8.checked}"/>
+                <input type="checkbox" th:checked="${friday.t8.checked}" />
+            </td>
+        </tr>
+        <tr id="17">
+            <td th:text="${monday.t9.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t9.checked}"/>
+                <input type="checkbox" th:checked="${monday.t9.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t9.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t9.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t9.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t9.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t9.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t9.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t9.checked}"/>
+                <input type="checkbox" th:checked="${friday.t9.checked}" />
+            </td>
+        </tr>
+        <tr id="18">
+            <td th:text="${monday.t10.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t10.checked}"/>
+                <input type="checkbox" th:checked="${monday.t10.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t10.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t10.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t10.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t10.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t10.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t10.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t10.checked}"/>
+                <input type="checkbox" th:checked="${friday.t10.checked}" />
+            </td>
+        </tr>
+        <tr id="19">
+            <td th:text="${monday.t11.range}"></td>
+            <td>
+                <input type="hidden" th:value="${monday.t11.checked}"/>
+                <input type="checkbox" th:checked="${monday.t11.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${tuesday.t11.checked}"/>
+                <input type="checkbox"  th:checked="${tuesday.t11.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${wednesday.t11.checked}"/>
+                <input type="checkbox"  th:checked="${wednesday.t11.checked}" />
+            </td>
+            <td>
+                <input type="hidden"  th:value="${thursday.t11.checked}"/>
+                <input type="checkbox"  th:checked="${thursday.t11.checked}" />
+            </td>
+            <td>
+                <input type="hidden" th:value="${friday.t11.checked}"/>
+                <input type="checkbox" th:checked="${friday.t11.checked}" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

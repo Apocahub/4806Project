@@ -47,7 +47,7 @@ public class Application {
         p = new Student("StudentTest2", "p1");
         ((Student) p).setEngineeringStream(EngineeringStream.AEROSPACE);
         userRepo.save(p);
-        p = new Prof("ProfTest", "p2");
+        p = new Prof("test", "test");
         userRepo.save(p);
         p = new Prof("ProfTest1", "p2");
         userRepo.save(p);
@@ -61,7 +61,7 @@ public class Application {
 
     public void populateProject() {
         Project p;
-        User u = userRepo.findByEmail("ProfTest");
+        User u = userRepo.findByEmail("test");
         p = new Project("project1", (Prof) u);
         p.setDescription("u smell");
         p.setMaxStudents(3);
