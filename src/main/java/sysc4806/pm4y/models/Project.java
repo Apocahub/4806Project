@@ -130,8 +130,10 @@ public final class Project
         this.due = dueDate;
     }
 
-    public LocalDateTime getDue() {
-        return due;
+    public String getDueDateFancy() {
+        String s = "Project Due: ";
+        s = s + (due != null ? due.toLocalDate() + " @ " + due.toLocalTime() : "Project due date not yet set!");
+        return s;
     }
 
 }

@@ -9,6 +9,10 @@ public class DateContainer {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dateTime;
 
+    public DateContainer() {
+        dateTime = LocalDateTime.now();
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }

@@ -3,14 +3,12 @@ package sysc4806.pm4y.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sysc4806.pm4y.models.DateContainer;
-import sysc4806.pm4y.models.Project;
-import sysc4806.pm4y.models.Student;
-import sysc4806.pm4y.models.User;
+import sysc4806.pm4y.models.*;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import sysc4806.pm4y.repositories.UserRepo;
 
@@ -36,6 +34,7 @@ public class AdminController {
     public String adminLoggedIn(Model model,
                                 @PathVariable("id") String id,
                                 RedirectAttributes redirectAttributes){
+        User me = userRepo.findById(id);
         List<User> returns = userRepo.findAll();
         List<Student> toDisplay = new ArrayList<Student>();
         for (User user : returns) {
@@ -46,24 +45,32 @@ public class AdminController {
             }
         }
         model.addAttribute("users", toDisplay);
-        model.addAttribute("id", id);
-        redirectAttributes.addFlashAttribute("test", "test");
+        model.addAttribute(ProjectCoordinator.MODEL_NAME, me);
         return "adminLandingPage";
     }
 
-    @RequestMapping(value = "/admin/updateDate")
+    @RequestMapping(value = "/admin/updateDate/{id}")
     public String dueDateUpdate(Model model,
-                                @ModelAttribute(value = "dateContainer") DateContainer dateContainer) {
-        //Need ID to get back to admin landing page
+                                @PathVariable("id") String id,
+                                @ModelAttribute("dateContainer") DateContainer dateContainer,
+                                RedirectAttributes redirectAttributes) {
 
         LocalDateTime date = dateContainer.getDateTime();
         if(date == null) {
-            return "redirect:/";
+            redirectAttributes.addFlashAttribute("notify", "Not a valid date/time!");
+            redirectAttributes.addFlashAttribute("dateContainer", new DateContainer());
+            return "redirect:/admin/" + id;
         }
         List<Project> projects = projectRepo.findAll();
         for(Project p : projects) {
             p.setDue(date);
         }
-        return "redirect:/";
+
+        //Do not touch me, code doesnt work without extra query (no idea)
+        List<Project> projects2 = projectRepo.findAll();
+
+        redirectAttributes.addFlashAttribute("notify", "Project due date updated");
+        redirectAttributes.addFlashAttribute("dateContainer", new DateContainer());
+        return "redirect:/admin/" + id;
     }
 }

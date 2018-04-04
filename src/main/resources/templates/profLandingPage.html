@@ -13,6 +13,7 @@
     <div class="tab">
         <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'project')">Projects</button>
         <button class="tablinks" onclick="openTab(event, 'avail')">Availability</button>
+        <button class="tablinks" style="float: right" th:text="${projects[0].getDueDateFancy()}"></button>
     </div>
     <div id="project" class="tabcontent">
         <table id="projectTable" class="container">
