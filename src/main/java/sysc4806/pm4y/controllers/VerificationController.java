@@ -1,6 +1,7 @@
 package sysc4806.pm4y.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.SecurityContextProvider;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,14 @@ public class VerificationController {
     @RequestMapping(value="/login")
     public String login(@ModelAttribute(value = User.MODEL_NAME) User user,
                         @ModelAttribute(value = UserType.MODEL_NAME) UserType userType,
-                        RedirectAttributes redirectAttributes) {
+                        RedirectAttributes redirectAttributes,
+                        HttpServletRequest httpServletRequest) {
+
+
+        if(!isAuthenticated(httpServletRequest)) {
+            redirectAttributes.addFlashAttribute("error", "Attempting to access a private page!");
+            return "redirect:/logout";
+        }
 
         User account = userRepo.findByEmail(user.getEmail());
         if(account == null) {
@@ -62,18 +70,23 @@ public class VerificationController {
 
     }
     @RequestMapping(value="/logout", method= RequestMethod.GET)
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if(session != null) {
             session.invalidate();
         }
+        Cookie killMe = new Cookie("JSESSIONID", null);
+        killMe.setMaxAge(0);
+        killMe.setPath("/");
+        response.addCookie(killMe);
+
         return "redirect:/";
     }
 
 
-    public boolean isAuthenticated(String sessionId) {
-        List<User> users = userRepo.findBySessionId(sessionId);
-        return !users.isEmpty();
+    public boolean isAuthenticated(HttpServletRequest httpServletRequest) {
+        Cookie[] cookieJar = httpServletRequest.getCookies();
+        return (cookieJar.length > 0);
     }
 
 }
