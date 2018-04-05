@@ -32,11 +32,15 @@ public final class Project
     private int maxStudents;
     private String description;
     private LocalDateTime due;
+    public boolean isArchived;
 
-    public Project() {}
+    public Project() {
+        isArchived = false;
+    }
 
     public Project(final String projectName, final Prof professor)
     {
+        isArchived = false;
         setProjectName(projectName);
         setProfessor(professor);
     }

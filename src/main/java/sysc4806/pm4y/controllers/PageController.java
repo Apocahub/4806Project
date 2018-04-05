@@ -29,14 +29,15 @@ public class PageController {
     public String studentLoggedIn(Model model,
                                   @PathVariable("id") String id){
         Student me = (Student) userRepo.findById(id);
-        if(me.getProject().getProfessor() == null) {
+        if(me.getProject() == null) {
             List<Project> returns = projectRepo.findAll();
             List<Project> toDisplay = new ArrayList<Project>();
 
             for (Project project : returns) {
                 if(project.getMaxStudents() > project.getStudents().size()) {
                     if(project.getEngineeringStreams().size() == 0 || project.getEngineeringStreams().contains(((Student)me).getEngineeringStream())) {
-                        toDisplay.add(project);
+                        if(!project.isArchived)
+                            toDisplay.add(project);
                     }
                 }
             }
