@@ -52,3 +52,9 @@ A Professor can view all their current projects, delete projects, or archive the
 A Student can apply for a project, and will be accepted if they qualify. A student can "submit" a report for their final report
 and set their availablility for a presentation. (The schedule is currently not working properly but the front end exists) 
 Admininstrators can view and "notify" students who don't have projects, and set the due date for all projects.
+
+USERNAME:PASSWORD
+StudentTest:p1
+StudentTest2:p1
+ProfTest:p2
+AdminTest:p3
