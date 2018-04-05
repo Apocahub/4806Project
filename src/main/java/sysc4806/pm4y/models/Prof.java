@@ -14,7 +14,7 @@ public class Prof extends User
     @OneToMany
     private List<Project> projectList;
 
-    @OneToOne(targetEntity = Schedule.class, cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = Schedule.class)
     private Schedule schedule;
 
     public Prof() {

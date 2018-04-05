@@ -95,7 +95,7 @@ public class ProfessorController {
     }
 
     @RequestMapping(value = "/{id}/avl/process", method = RequestMethod.POST)
-    private String processAvl(@PathVariable(value = "id") String id, @RequestParam(required = false, value = "schedule") Schedule schedule) {
+    private String processAvl(@PathVariable(value = "id") String id) {
         return "redirect:/prof/" + id;
     }
 }
