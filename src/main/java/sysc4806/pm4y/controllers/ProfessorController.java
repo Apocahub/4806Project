@@ -98,4 +98,13 @@ public class ProfessorController {
     private String processAvl(@PathVariable(value = "id") String id) {
         return "redirect:/prof/" + id;
     }
+
+    @RequestMapping(value = "/{id}/project/{pid}/archive", method = RequestMethod.POST)
+    private String archive(@PathVariable(value = "id") String id, @PathVariable(value = "pid") String pid) {
+        Project p = projectRepo.findById(Integer.parseInt(pid));
+        p.isArchived = !p.isArchived;
+
+        List<Project> garbage = projectRepo.findAll();
+        return "redirect:/prof/" + id;
+    }
 }

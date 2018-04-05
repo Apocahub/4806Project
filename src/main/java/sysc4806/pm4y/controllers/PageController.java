@@ -37,7 +37,8 @@ public class PageController {
             for (Project project : returns) {
                 if(project.getMaxStudents() > project.getStudents().size()) {
                     if(project.getEngineeringStreams().size() == 0 || project.getEngineeringStreams().contains(((Student)me).getEngineeringStream())) {
-                        toDisplay.add(project);
+                        if(!project.isArchived)
+                            toDisplay.add(project);
                     }
                 }
             }
