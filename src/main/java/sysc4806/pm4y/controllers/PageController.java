@@ -29,7 +29,7 @@ public class PageController {
     public String studentLoggedIn(Model model,
                                   @PathVariable("id") String id){
         Student me = (Student) userRepo.findById(id);
-        if(me.getProject().getProfessor() == null) {
+        if(me.getProject() == null) {
             List<Project> returns = projectRepo.findAll();
             List<Project> toDisplay = new ArrayList<Project>();
 
