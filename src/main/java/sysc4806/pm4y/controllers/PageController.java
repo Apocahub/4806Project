@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sysc4806.pm4y.models.*;
+import sysc4806.pm4y.models.schedule.Schedule;
 import sysc4806.pm4y.repositories.ProjectRepo;
 import sysc4806.pm4y.repositories.UserRepo;
 
@@ -41,9 +42,14 @@ public class PageController {
                     }
                 }
             }
+            Schedule schedule = me.getSchedule();
+            if(schedule == null) {
+                schedule = new Schedule();
+            }
             model.addAttribute("projects", toDisplay);
             model.addAttribute(Student.MODEL_NAME, me);
             model.addAttribute("dueDateProject", (toDisplay.isEmpty() ? new Project() : toDisplay.get(0)));
+            model.addAttribute("schedule", schedule);
             return "studentLandingPage";
         } else {
             //isRegistered
@@ -71,5 +77,10 @@ public class PageController {
         List<Project> projectGarbage = projectRepo.findAll();
         List<User> userGarbage = userRepo.findAll();
         return "redirect:/student/" + id;
+    }
+
+    @RequestMapping(value = "student/{id}/avl/process", method = RequestMethod.POST)
+    private String processAvl(@PathVariable(value = "id") String id, @RequestParam(required = false, value = "schedule") Schedule schedule) {
+        return "redirect:/prof/" + id;
     }
 }

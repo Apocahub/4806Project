@@ -58,7 +58,26 @@
         </div>
     </div>
 
-    <div id="avail" class="tabcontent">Nothing here</div>
+    <div id="avail" class="tabcontent">
+        <form action="#" th:action="@{/prof/{id}/avl/process(id=__${id}__)}" th:object="${schedule}" method="post">
+            <table>
+                <thead>
+                <tr>
+                    <th th:each="weekday : ${schedule.HEADERS}"><h1 th:text="${weekday}"></h1></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="row : ${schedule.timeSlotList}" th:field="$__*{timeSlotList}__">
+                    <td th:text="${row.time}"></td>
+                    <td th:each="value : ${row.checkedValues}">
+                        <input type="checkbox" th:checked="${value}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
 
 </body>
 </html>
